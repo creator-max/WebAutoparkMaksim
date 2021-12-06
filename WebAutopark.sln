@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark", "WebAutopark\WebAutopark.csproj", "{96114A43-753E-4E7A-B6F1-20F13B939760}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark", "WebAutopark\WebAutopark.csproj", "{96114A43-753E-4E7A-B6F1-20F13B939760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark.DataAccesLayer", "WebAutopark.DataAccesLayer\WebAutopark.DataAccesLayer.csproj", "{1884D9F8-2230-4F58-962A-F5A50410A88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{96114A43-753E-4E7A-B6F1-20F13B939760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96114A43-753E-4E7A-B6F1-20F13B939760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96114A43-753E-4E7A-B6F1-20F13B939760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55FD331E-D50E-4CF1-9A46-1801C7CE1F2E}
 	EndGlobalSection
 EndGlobal
