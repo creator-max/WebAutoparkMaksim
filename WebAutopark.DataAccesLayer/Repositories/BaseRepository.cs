@@ -10,7 +10,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
     public abstract class BaseRepository<T> : IRepository<T>
         where T : class
     {
-        protected readonly string _connectionString;
+        protected readonly string ConnectionString;
         protected readonly string QueryGetAll;
         protected readonly string QueryGetByID;
         protected readonly string QueryCreate;
@@ -24,7 +24,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
                               string queryDelete,
                               string queryUpdate)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
             QueryGetAll = queryGetAll;
             QueryGetByID = queryGetById;
             QueryCreate = queryCreate;
@@ -34,7 +34,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public virtual async Task CreateAsync(T item)
         {
-            using(DbConnection db = new SqlConnection(_connectionString))
+            using(DbConnection db = new SqlConnection(ConnectionString))
             {
                 await db.ExecuteAsync(QueryCreate, item);
             }
@@ -42,7 +42,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public virtual async Task DeleteAsync(int id)
         {
-            using (DbConnection db = new SqlConnection(_connectionString))
+            using (DbConnection db = new SqlConnection(ConnectionString))
             {
                 await db.ExecuteAsync(QueryDelete, id);
             }
@@ -50,7 +50,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            using (DbConnection db = new SqlConnection(_connectionString))
+            using (DbConnection db = new SqlConnection(ConnectionString))
             {
                 return await db.QueryAsync<T>(QueryGetAll);
             }
@@ -58,7 +58,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            using (DbConnection db = new SqlConnection(_connectionString))
+            using (DbConnection db = new SqlConnection(ConnectionString))
             {
                 return await db.QueryFirstOrDefaultAsync<T>(QueryGetByID, id);
             }
@@ -66,7 +66,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public virtual async Task UpdateAsync(T item)
         {
-            using (DbConnection db = new SqlConnection(_connectionString))
+            using (DbConnection db = new SqlConnection(ConnectionString))
             {
                 await db.ExecuteAsync(QueryUpdate, item);
             }
