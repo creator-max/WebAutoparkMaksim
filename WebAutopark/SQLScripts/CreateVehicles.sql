@@ -3,7 +3,7 @@ CREATE TABLE [Vehicles]
     [VehicleId]       INT     IDENTITY(1, 1)  NOT NULL,
     [VehicleTypeId]   INT                     NOT NULL,
     [Model]           NVARCHAR(50)            NOT NULL,
-    [YearOfIssue]     SMALLINT                NOT NULL,
+    [YearOfIssue]     INT                     NOT NULL,
     [Weight]          FLOAT(53)               NOT NULL,
     [TankCapacity]    FLOAT(53)               NOT NULL,
     [LicensePlat]     NVARCHAR(10)            NOT NULL,
