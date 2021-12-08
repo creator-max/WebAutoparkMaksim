@@ -6,7 +6,7 @@ using WebAutopark.DataAccesLayer.Interfaces;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public class DetailRepository : ProviderService, IRepository<Detail>
+    public class DetailRepository : ConnectionProvider, IRepository<Detail>
     {
         private const string QueryGetAll = "SELECT * FROM Details";
 

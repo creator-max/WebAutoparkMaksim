@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public abstract class ProviderService : IDisposable, IAsyncDisposable
+    public abstract class ConnectionProvider : IDisposable, IAsyncDisposable
     {
         protected readonly DbConnection Connection;
 
-        public ProviderService(string connectionString)
+        public ConnectionProvider(string connectionString)
         {
             Connection = new SqlConnection(connectionString);
         }
