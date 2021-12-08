@@ -1,26 +1,27 @@
-﻿using System;
+﻿using Dapper;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
+using WebAutopark.DataAccesLayer.Interfaces;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public class VehicleRepository : BaseRepository<Vehicle>
+    public class VehicleRepository : BaseRepository<Vehicle>, IRepository<Vehicle>
     {
-        private const string _queryGetAll = "SELECT * FROM Vehicles";
+        private const string QueryGetAll = "SELECT * FROM Vehicles";
 
-        private const string _queryGetById = "SELECT * FROM Vehicles " +
+        private const string QueryGetById = "SELECT * FROM Vehicles " +
                                              "WHERE VehicleId = @VehicleId";
 
-        private const string _queryCreate = "INSERT Vehicles VALUES(" +
+        private const string QueryCreate = "INSERT Vehicles VALUES(" +
                                             "@VehicleTypeId, @Model, @YearOfIssue," +
                                             "@Weight, @TankCapacity, @LicensePlat, " +
                                             "@MileageKm, @Color)";
 
-        private const string _queryDelete = "DELETE FROM Vehicles" +
+        private const string QueryDelete = "DELETE FROM Vehicles" +
                                             "WHERE VehicleId = @VehicleId";
 
-        private const string _queryUpdate = "UPDATE Vehicles SET" +
+        private const string QueryUpdate = "UPDATE Vehicles SET" +
                                             "VehicleTypeId = @VehicleTypeId," +
                                             "Model         = @Model," +
                                             "YearOfIssue   = @YearOfIssue," +
@@ -32,11 +33,14 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "WHERE VehicleId = @VehicleId";
 
         public VehicleRepository(string connectionString)
-
-            : base(connectionString, _queryGetAll, 
-                  _queryGetById, _queryCreate, 
-                  _queryDelete, _queryUpdate)
+            : base(connectionString)
         { }
-        
+
+        public async Task CreateAsync(Vehicle item) => await Connection.ExecuteAsync(QueryCreate, item);
+        public async Task DeleteAsync(int id) => await Connection.ExecuteAsync(QueryDelete, id);
+        public async Task<IEnumerable<Vehicle>> GetAllAsync() => await Connection.QueryAsync<Vehicle>(QueryGetAll);
+        public async Task<Vehicle> GetByIdAsync(int id) => await Connection.QueryFirstOrDefaultAsync<Vehicle>(QueryGetById, id);
+        public async Task UpdateAsync(Vehicle item) => await Connection.ExecuteAsync(QueryUpdate, item);
+
     }
 }
