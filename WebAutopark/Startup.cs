@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutopark.DataAccesLayer.Repositories.Connection;
+using WebAutopark.DataAccesLayer.Repositories;
+using WebAutopark.DataAccesLayer.Interfaces;
+
 
 namespace WebAutopark
 {
@@ -18,9 +22,13 @@ namespace WebAutopark
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<IConnectionStringProvider, MsSQLStringProvider>(_ => new MsSQLStringProvider(Configuration));
+            services.AddTransient<DetailRepository>();
+            services.AddTransient<VehicleRepository>();
+            services.AddTransient<VehicleTypeRepository>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DetailRepository detailRepository)
         {
             if (env.IsDevelopment())
             {
@@ -39,6 +47,7 @@ namespace WebAutopark
                              {
                                  endpoints.MapDefaultControllerRoute();
                              });
+
         }
     }
 }

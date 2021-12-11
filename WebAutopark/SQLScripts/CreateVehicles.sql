@@ -7,7 +7,7 @@ CREATE TABLE [Vehicles]
     [Weight]          FLOAT(53)               NOT NULL,
     [TankCapacity]    FLOAT(53)               NOT NULL,
     [LicensePlat]     NVARCHAR(10)            NOT NULL,
-    [MileageKm]       FLOAT(53)               NOT NULL,
+    [Mileage]         FLOAT(53)               NOT NULL,
     [Color]           INT                     NOT NULL,
     
     CONSTRAINT  [PK_Vehicles] PRIMARY KEY CLUSTERED([VehicleId] ASC),

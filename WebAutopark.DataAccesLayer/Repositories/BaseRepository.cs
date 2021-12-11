@@ -2,16 +2,17 @@
 using System;
 using System.Data.Common;
 using System.Threading.Tasks;
+using WebAutopark.DataAccesLayer.Interfaces;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public abstract class ConnectionProvider : IDisposable, IAsyncDisposable
+    public abstract class BaseRepository : IDisposable, IAsyncDisposable
     {
         protected readonly DbConnection Connection;
 
-        public ConnectionProvider(string connectionString)
+        public BaseRepository(IConnectionStringProvider connectionStringProvider)
         {
-            Connection = new SqlConnection(connectionString);
+            Connection = new SqlConnection(connectionStringProvider.GetConnectionString());
         }
 
         public void Dispose() => Connection?.Dispose();

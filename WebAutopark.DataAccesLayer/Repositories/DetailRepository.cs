@@ -6,31 +6,31 @@ using WebAutopark.DataAccesLayer.Interfaces;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public class DetailRepository : ConnectionProvider, IRepository<Detail>
+    public class DetailRepository : BaseRepository, IRepository<Detail>
     {
         private const string QueryGetAll = "SELECT * FROM Details";
 
         private const string QueryGetById = "SELECT * FROM Details " +
-                                             "WHERE DetailId = @DetailId";
-
-        private const string QueryCreate = "INSERT Details VALUES(DetailName)";
-
-        private const string QueryDelete = "DELETE FROM Details" +
                                             "WHERE DetailId = @DetailId";
 
-        private const string QueryUpdate = "UPDATE Details SET" +
-                                           "DetailName = @DetailName," +
+        private const string QueryCreate = "INSERT INTO Details VALUES(@DetailName)";
+
+        private const string QueryDelete = "DELETE FROM Details" +
                                            "WHERE DetailId = @DetailId";
 
-        public DetailRepository(string connectionString) :
-            base(connectionString)
+        private const string QueryUpdate = "UPDATE Details SET" +
+                                           "DetailName = @DetailName" +
+                                           "WHERE DetailId = @DetailId";
+
+        public DetailRepository(IConnectionStringProvider connectionStringProvider) :
+            base(connectionStringProvider)
         { }
 
-        public virtual async Task CreateAsync(Detail item) => await Connection.ExecuteAsync(QueryCreate, item);
-        public virtual async Task DeleteAsync(int id) => await Connection.ExecuteAsync(QueryDelete, id);
-        public virtual async Task<IEnumerable<Detail>> GetAllAsync() => await Connection.QueryAsync<Detail>(QueryGetAll);
-        public virtual async Task<Detail> GetByIdAsync(int id) => await Connection.QueryFirstOrDefaultAsync<Detail>(QueryGetById, id);
-        public virtual async Task UpdateAsync(Detail item) => await Connection.ExecuteAsync(QueryUpdate, item);
+        public virtual async Task Create(Detail item) => await Connection.ExecuteAsync(QueryCreate, item);
+        public virtual async Task Delete(int id) => await Connection.ExecuteAsync(QueryDelete, id);
+        public virtual async Task<IEnumerable<Detail>> GetAll() => await Connection.QueryAsync<Detail>(QueryGetAll);
+        public virtual async Task<Detail> GetById(int id) => await Connection.QueryFirstOrDefaultAsync<Detail>(QueryGetById, id);
+        public virtual async Task Update(Detail item) => await Connection.ExecuteAsync(QueryUpdate, item);
 
     }
 }

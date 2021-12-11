@@ -6,17 +6,17 @@ using WebAutopark.DataAccesLayer.Interfaces;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {
-    public class VehicleRepository : ConnectionProvider, IRepository<Vehicle>
+    public class VehicleRepository : BaseRepository, IRepository<Vehicle>
     {
         private const string QueryGetAll = "SELECT * FROM Vehicles";
 
         private const string QueryGetById = "SELECT * FROM Vehicles " +
                                              "WHERE VehicleId = @VehicleId";
 
-        private const string QueryCreate = "INSERT Vehicles VALUES(" +
+        private const string QueryCreate = "INSERT INTO Vehicles VALUES(" +
                                             "@VehicleTypeId, @Model, @YearOfIssue," +
                                             "@Weight, @TankCapacity, @LicensePlat, " +
-                                            "@MileageKm, @Color)";
+                                            "@Mileage, @Color)";
 
         private const string QueryDelete = "DELETE FROM Vehicles" +
                                             "WHERE VehicleId = @VehicleId";
@@ -28,19 +28,19 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "Weight        = @Weight," +
                                             "TankCapacity  = @TankCapacity," +
                                             "LicensePlat   = @LicensePlat," +
-                                            "MileageKm     = @MileageKm, " +
+                                            "Mileage       = @Mileage, " +
                                             "Color         = @Color" +
                                             "WHERE VehicleId = @VehicleId";
 
-        public VehicleRepository(string connectionString)
-            : base(connectionString)
+        public VehicleRepository(IConnectionStringProvider connectionStringProvider) :
+            base(connectionStringProvider)
         { }
 
-        public async Task CreateAsync(Vehicle item) => await Connection.ExecuteAsync(QueryCreate, item);
-        public async Task DeleteAsync(int id) => await Connection.ExecuteAsync(QueryDelete, id);
-        public async Task<IEnumerable<Vehicle>> GetAllAsync() => await Connection.QueryAsync<Vehicle>(QueryGetAll);
-        public async Task<Vehicle> GetByIdAsync(int id) => await Connection.QueryFirstOrDefaultAsync<Vehicle>(QueryGetById, id);
-        public async Task UpdateAsync(Vehicle item) => await Connection.ExecuteAsync(QueryUpdate, item);
+        public async Task Create(Vehicle item) => await Connection.ExecuteAsync(QueryCreate, item);
+        public async Task Delete(int id) => await Connection.ExecuteAsync(QueryDelete, id);
+        public async Task<IEnumerable<Vehicle>> GetAll() => await Connection.QueryAsync<Vehicle>(QueryGetAll);
+        public async Task<Vehicle> GetById(int id) => await Connection.QueryFirstOrDefaultAsync<Vehicle>(QueryGetById, id);
+        public async Task Update(Vehicle item) => await Connection.ExecuteAsync(QueryUpdate, item);
 
     }
 }
