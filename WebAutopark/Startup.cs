@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebAutopark.DataAccesLayer.Repositories.Connection;
 using WebAutopark.DataAccesLayer.Repositories;
+using WebAutopark.DataAccesLayer.Entities;
 using WebAutopark.DataAccesLayer.Interfaces;
 
 
@@ -22,13 +23,13 @@ namespace WebAutopark
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IConnectionStringProvider, MsSQLStringProvider>(_ => new MsSQLStringProvider(Configuration));
-            services.AddTransient<DetailRepository>();
-            services.AddTransient<VehicleRepository>();
-            services.AddTransient<VehicleTypeRepository>();
+            services.AddSingleton<IConnectionStringProvider, MsSqlStringProvider>();
+            services.AddScoped<IRepository<Detail>, DetailRepository>();
+            services.AddScoped<IRepository<Vehicle>, VehicleRepository>();
+            services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DetailRepository detailRepository)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

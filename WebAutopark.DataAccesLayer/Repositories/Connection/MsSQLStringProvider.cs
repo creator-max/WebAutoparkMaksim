@@ -3,10 +3,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace WebAutopark.DataAccesLayer.Repositories.Connection
 {
-    public class MsSQLStringProvider : IConnectionStringProvider
+    public class MsSqlStringProvider : IConnectionStringProvider
     {
         private string _connectionString;
-        public MsSQLStringProvider(IConfiguration configuration)
+        public MsSqlStringProvider(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("MSSqlServer");
         }
