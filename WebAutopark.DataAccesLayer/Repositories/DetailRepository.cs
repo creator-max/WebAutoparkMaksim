@@ -26,11 +26,11 @@ namespace WebAutopark.DataAccesLayer.Repositories
             base(connectionStringProvider)
         { }
 
-        public virtual async Task Create(Detail item) => await Connection.ExecuteAsync(QueryCreate, item);
-        public virtual async Task Delete(int id) => await Connection.ExecuteAsync(QueryDelete, id);
-        public virtual async Task<IEnumerable<Detail>> GetAll() => await Connection.QueryAsync<Detail>(QueryGetAll);
-        public virtual async Task<Detail> GetById(int id) => await Connection.QueryFirstOrDefaultAsync<Detail>(QueryGetById, id);
-        public virtual async Task Update(Detail item) => await Connection.ExecuteAsync(QueryUpdate, item);
+        public async Task Create(Detail item) => await Connection.ExecuteAsync(QueryCreate, item);
+        public async Task Delete(int id) => await Connection.ExecuteAsync(QueryDelete, id);
+        public async Task<IEnumerable<Detail>> GetAll() => await Connection.QueryAsync<Detail>(QueryGetAll);
+        public async Task<Detail> GetById(int id) => await Connection.QueryFirstOrDefaultAsync<Detail>(QueryGetById, id);
+        public async Task Update(Detail item) => await Connection.ExecuteAsync(QueryUpdate, item);
 
     }
 }
