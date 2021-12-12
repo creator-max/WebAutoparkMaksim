@@ -13,7 +13,8 @@ namespace WebAutopark.DataAccesLayer.Repositories
         private const string QueryGetById = "SELECT * FROM Details " +
                                             "WHERE DetailId = @DetailId";
 
-        private const string QueryCreate = "INSERT INTO Details VALUES(@DetailName)";
+        private const string QueryCreate = "INSERT INTO Details(DetailName) " +
+                                            "VALUES(@DetailName)";
 
         private const string QueryDelete = "DELETE FROM Details" +
                                            "WHERE DetailId = @DetailId";
