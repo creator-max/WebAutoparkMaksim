@@ -8,6 +8,7 @@
       <Content Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
       <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
       <Content Remove="wwwroot\lib\bootstrap\LICENSE" />
+      <ProjectReference Include="..\WebAutopark.DataAccesLayer\WebAutopark.DataAccesLayer.csproj" />
     </ItemGroup>
 
 </Project>
