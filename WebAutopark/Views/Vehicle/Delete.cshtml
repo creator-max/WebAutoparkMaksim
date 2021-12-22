@@ -1,0 +1,61 @@
+﻿@model WebAutopark.DataAccesLayer.Entities.Vehicle
+@{
+    ViewData["Title"] = "Удаление категории";
+}
+<h2>@ViewBag.Title</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>ID</dt>
+        <dd>
+            @Model.VehicleId
+        </dd>
+
+        <dt>TypeId</dt>
+        <dd>
+            @Model.VehicleTypeId
+        </dd>
+
+        <dt>Model</dt>
+        <dd>
+            @Model.Model
+        </dd>
+
+        <dt>Year</dt>
+        <dd>
+            @Model.YearOfIssue
+        </dd>
+
+        <dt>Weight</dt>
+        <dd>
+            @Model.Weight
+        </dd>
+
+        <dt>Tank Capacity</dt>
+        <dd>
+            @Model.TankCapacity
+        </dd>
+
+        <dt>LicensePlat</dt>
+        <dd>
+            @Model.LicensePlat
+        </dd>
+
+        <dt>Image</dt>
+        <dd>
+            @Model.ImageLink
+        </dd>
+
+        <dt>Price $</dt>
+        <dd>
+            @Model.Price
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Vehicle" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>

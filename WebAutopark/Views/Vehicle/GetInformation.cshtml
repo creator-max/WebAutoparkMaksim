@@ -1,0 +1,49 @@
+﻿@model WebAutopark.DataAccesLayer.Entities.Vehicle
+
+
+<div>
+
+    <img class="img-thumbnail" src="~/img/@Model.ImageLink" alt="@Model.Model" width="400" height="250" />
+
+    <div>
+        <h4 class="mr-3 d-inline-block">@Model.Model</h4>
+
+
+        <div>
+            <h6 class="d-inline-block">Price: </h6>
+            <p class="m-2 d-inline-block">$@Model.Price</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">Type: </h6>
+            <p class="m-2 d-inline-block">@Model.VehicleType.TypeName</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">Year: </h6>
+            <p class="m-2 d-inline-block">@Model.YearOfIssue</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">Weight: </h6>
+            <p class="m-2 d-inline-block">@Model.Weight</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">Color: </h6>
+            <p class="m-2 d-inline-block">@Model.Color</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">Mileage: </h6>
+            <p class="m-2 d-inline-block">@Model.Mileage</p>
+        </div>
+
+        <div>
+            <h6 class="d-inline-block">TankCapacity: </h6>
+            <p class="m-2 d-inline-block">@Model.TankCapacity</p>
+        </div>
+
+        <a class="btn btn-warning" href="#">В корзину</a>
+    </div>
+</div>

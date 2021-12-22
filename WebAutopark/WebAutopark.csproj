@@ -8,6 +8,15 @@
       <Content Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
       <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
       <Content Remove="wwwroot\lib\bootstrap\LICENSE" />
+      <None Include="Views\VehicleType\Create.cshtml" />
+      <None Include="Views\VehicleType\Delete.cshtml" />
+      <None Include="Views\VehicleType\Edit.cshtml" />
+      <None Include="Views\VehicleType\Index.cshtml" />
+      <None Include="Views\Vehicle\Create.cshtml" />
+      <None Include="Views\Vehicle\Delete.cshtml" />
+      <None Include="Views\Vehicle\Edit.cshtml" />
+      <None Include="Views\Vehicle\GetInformation.cshtml" />
+      <None Include="Views\Vehicle\Index.cshtml" />
       <ProjectReference Include="..\WebAutopark.DataAccesLayer\WebAutopark.DataAccesLayer.csproj" />
     </ItemGroup>
 

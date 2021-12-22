@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebAutopark.DataAccesLayer.Entities.Vehicle>
+
+@{ 
+    ViewData["Title"] = "ViewVehicles"; 
+}
+
+<hr />
+<h4 class="text-center my-1">Vehicles list</h4>
+<hr />
+<table class="table table-striped table-borderless table-sm">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Weight
+            </th>
+            <th>
+                TankCapacity
+            </th>
+            <th>
+                LicensePlat
+            </th>
+            <th>
+                Mileage
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                VehicleType
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.VehicleId
+            </td>
+            <td>
+                @item.Model
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.YearOfIssue
+            </td>
+            <td>
+                @item.Weight
+            </td>
+            <td>
+                @item.TankCapacity
+            </td>
+            <td>
+                @item.LicensePlat
+            </td>
+            <td>
+                @item.Mileage
+            </td>
+            <td>
+                @item.Color
+            </td>
+            <td>
+                @item.VehicleTypeId
+            </td>
+            <td>
+                @item.ImageLink
+            </td>
+            <td>
+                <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">Изменить</a> |
+                <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-controller="Vehicle" asp-action="Create">Добавить</a>
+</p>

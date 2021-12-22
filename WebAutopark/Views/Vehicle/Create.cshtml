@@ -1,0 +1,80 @@
+﻿@model WebAutopark.DataAccesLayer.Entities.Vehicle
+@using WebAutopark.Controllers; 
+@using WebAutopark.DataAccesLayer.Entities; 
+
+@{
+    ViewData["Title"] = "NewVehicle";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" asp-controller="Vehicle">
+    <div>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label asp-for="VehicleType"></label>
+            <select class="form-select custom-select" asp-for="VehicleTypeId">
+                @foreach (var type in VehicleController.VehicleTypes)
+                {
+                    <option value="@type.TypeId">@type.TypeName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Color"></label>
+            <select class="form-select custom-select" asp-for="Color">
+                @foreach (var color in Enum.GetValues(typeof(Color)).Cast<Color>())
+                {
+                    <option value="@color">@color</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Model"></label>
+            <input asp-for="Model" class="form-control form-control-sm" />
+            <span asp-validation-for="Model" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control form-control-sm" />
+            <span asp-validation-for="Price" />
+        </div>
+        <div class="form-group">
+            <label asp-for="YearOfIssue"></label>
+            <input asp-for="YearOfIssue" class="form-control  form-control-sm" />
+            <span asp-validation-for="YearOfIssue" />
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Weight"></label>
+            <input asp-for="Weight" class="form-control  form-control-sm" />
+            <span asp-validation-for="Weight" />
+        </div>
+        <div class="form-group">
+            <label asp-for="TankCapacity"></label>
+            <input asp-for="TankCapacity" class="form-control  form-control-sm" />
+            <span asp-validation-for="TankCapacity" />
+        </div>
+        <div class="form-group">
+            <label asp-for="LicensePlat"></label>
+            <input asp-for="LicensePlat" class="form-control  form-control-sm" />
+            <span asp-validation-for="LicensePlat" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageLink"></label>
+            <input asp-for="ImageLink" class="form-control  form-control-sm" />
+            <span asp-validation-for="ImageLink" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Mileage"></label>
+            <input asp-for="Mileage" class="form-control  form-control-sm" />
+            <span asp-validation-for="Mileage" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Vehicle" asp-action="Index">Вернуться к списку</a>
+</div>

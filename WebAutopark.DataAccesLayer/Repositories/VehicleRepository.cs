@@ -15,10 +15,10 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, " +
                                             "YearOfIssue, Weight, TankCapacity, LicensePlat " +
-                                            "Mileage, Color) " +
+                                            "Mileage, Color, Price, ImageLink) " +
                                             "VALUES(@VehicleTypeId, @Model, @YearOfIssue, " +
                                             "@Weight, @TankCapacity, @LicensePlat, " +
-                                            "@Mileage, @Color)";
+                                            "@Mileage, @Color, @Price, @ImageLink)";
 
         private const string QueryDelete = "DELETE FROM Vehicles " +
                                             "WHERE VehicleId = @VehicleId ";
@@ -31,7 +31,9 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "TankCapacity  = @TankCapacity, " +
                                             "LicensePlat   = @LicensePlat, " +
                                             "Mileage       = @Mileage, " +
-                                            "Color         = @Color " +
+                                            "Color         = @Color," +
+                                            "ImageLink     = @ImageLink," +
+                                            "Price         = @Price " +
                                             "WHERE VehicleId = @VehicleId ";
 
         public VehicleRepository(IConnectionStringProvider connectionStringProvider) :
