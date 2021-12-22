@@ -16,10 +16,10 @@ namespace WebAutopark.Controllers
         private IRepository<VehicleType> _vehicleTypeRepository;
         public static List<VehicleType> VehicleTypes;
 
-        public VehicleController(IRepository<Vehicle> repository, IRepository<VehicleType> typeRepo)
+        public VehicleController(IRepository<Vehicle> vehicleRepository, IRepository<VehicleType> typeRepository)
         {
-            _vehicleRepository = repository;
-            _vehicleTypeRepository = typeRepo;
+            _vehicleRepository = vehicleRepository;
+            _vehicleTypeRepository = typeRepository;
         }
 
         //GETALL

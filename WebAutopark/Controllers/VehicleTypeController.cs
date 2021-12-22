@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
 using WebAutopark.DataAccesLayer.Interfaces;
@@ -12,9 +9,9 @@ namespace WebAutopark.Controllers
     {
         private IRepository<VehicleType> _vehicleTypeRepository;
 
-        public VehicleTypeController(IRepository<VehicleType> repository)
+        public VehicleTypeController(IRepository<VehicleType> typeRepository)
         {
-            _vehicleTypeRepository = repository;
+            _vehicleTypeRepository = typeRepository;
         }
 
         public ActionResult Create()
