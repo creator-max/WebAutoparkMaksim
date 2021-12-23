@@ -103,22 +103,5 @@ namespace WebAutopark.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-        //SOME OTHER LOGIC
-        [HttpGet]
-        public async Task<IActionResult> GetInformation(int id)
-        {
-            if (id >= 0)
-            {
-                var vehicle = await _vehicleDtoService.GetById(id);
-                if (vehicle != null)
-                {
-                    return View(_mapper.Map<VehicleViewModel>(vehicle));
-                }
-            }
-
-            return RedirectToAction("Index", "Vehicle");
-        }
     }
 }
