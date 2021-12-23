@@ -11,30 +11,8 @@ namespace WebAutopark.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Vehicle> _vehicleRepository;
-
-        public HomeController(IRepository<Vehicle> vehicleRepository)
+        public HomeController()
         {
-            _vehicleRepository = vehicleRepository;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var vehicles = await _vehicleRepository.GetAll();
-            return View(vehicles);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(string name)
-        {
-            if (name != null)
-            {
-                name = name.ToUpper();
-                var vehicles = await _vehicleRepository.GetAll();
-                vehicles = vehicles.Where(v => v.Model.ToUpper().Contains(name));
-                return View(vehicles);
-            }
-            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
