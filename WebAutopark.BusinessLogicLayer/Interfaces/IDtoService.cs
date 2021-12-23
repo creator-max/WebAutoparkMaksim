@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace WebAutopark.BusinessLogicLayer.Interfaces
 {
     public interface IDtoService<T>
-        where T : IBusinessDto
+        where T : class
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(int id);

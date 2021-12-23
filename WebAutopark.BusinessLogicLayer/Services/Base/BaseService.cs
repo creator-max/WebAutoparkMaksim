@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using WebAutopark.BusinessLogicLayer.Interfaces;
 using WebAutopark.DataAccesLayer.Interfaces;
 using AutoMapper;
-using System.Linq;
 
 namespace WebAutopark.BusinessLogicLayer.Services.Base
 {
     public abstract class BaseService<TDto, TEntity> : IDtoService<TDto>
-        where TDto : IBusinessDto
+        where TDto : class
         where TEntity : class
     {
         protected readonly IRepository<TEntity> _repository;
@@ -20,29 +19,32 @@ namespace WebAutopark.BusinessLogicLayer.Services.Base
             _mapper = mapper;
         }
 
-        public virtual async Task Create(TDto item)
+        public Task Create(TDto item)
         {
-            await _repository.Create(_mapper.Map<TEntity>(item));
+            var entity = _mapper.Map<TEntity>(item);
+            return _repository.Create(entity);
         }
 
-        public virtual async Task Delete(int id)
+        public Task Delete(int id)
         {
-            await _repository.Delete(id);
+            return _repository.Delete(id);
         }
 
-        public virtual async Task<IEnumerable<TDto>> GetAll()
+        public async Task<IEnumerable<TDto>> GetAll()
         {
-            var entities =  await (_repository.GetAll());
-            return _mapper.Map<List<TDto>>(entities);
+            var entities =  await _repository.GetAll();
+            var tdoItems = _mapper.Map<List<TDto>>(entities);
+            return tdoItems;
         }
 
-        public virtual async Task<TDto> GetById(int id)
+        public async Task<TDto> GetById(int id)
         {
             var entity = await _repository.GetById(id);
-            return _mapper.Map<TDto>(entity);
+            var tdoItem = _mapper.Map<TDto>(entity);
+            return tdoItem;
         }
 
-        public virtual async Task Update(TDto item)
+        public async Task Update(TDto item)
         {
             var entity = _mapper.Map<TEntity>(item);
             await _repository.Update(entity);

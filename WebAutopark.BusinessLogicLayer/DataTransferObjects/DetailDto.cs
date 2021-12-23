@@ -2,7 +2,7 @@
 
 namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
 {
-    public class DetailDto : IBusinessDto
+    public class DetailDto
     {
         public int DetailId { get; set; }
         public string DetailName { get; set; }

@@ -4,7 +4,7 @@ using WebAutopark.DataAccesLayer.Entities;
 
 namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
 {
-    public class VehicleDto : IBusinessDto
+    public class VehicleDto
     {
         public int VehicleId { get; set; }
         public string Model { get; set; }
@@ -16,7 +16,5 @@ namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
         public string LicensePlat { get; set; }
         public double Mileage { get; set; }
         public Color Color { get; set; }
-        public int VehicleTypeId { get; set; }
-        public VehicleTypeDto VehicleType { get; set; }
-    }
+        public int VehicleTypeId { get; set; }    }
 }

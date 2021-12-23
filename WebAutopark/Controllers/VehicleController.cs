@@ -29,8 +29,10 @@ namespace WebAutopark.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var vehicleList = await _vehicleDtoService.GetAll();
-            return View(_mapper.Map<List<VehicleViewModel>>(vehicleList));
+            var vehiclesDto = await _vehicleDtoService.GetAll();
+            var vehiclesView = _mapper.Map<List<VehicleViewModel>>(vehiclesDto);
+
+            return View(vehiclesView);
         }
 
         [HttpPost]
@@ -38,10 +40,12 @@ namespace WebAutopark.Controllers
         {
             if (name != null)
             {
-                name = name.ToUpper();
-                var vehicles = await _vehicleDtoService.GetAll();
-                vehicles = vehicles.Where(v => v.Model.ToUpper().Contains(name));
-                return View(_mapper.Map<List<VehicleViewModel>>(vehicles));
+                var vehiclesDto = await _vehicleDtoService.GetAll();
+                vehiclesDto = vehiclesDto.Where(v => v.Model
+                    .Equals(name, StringComparison.OrdinalIgnoreCase));
+
+                var vehiclesView = _mapper.Map<List<VehicleViewModel>>(vehiclesDto);
+                return View(vehiclesView);
             }
             return RedirectToAction("Index");
         }
@@ -49,7 +53,9 @@ namespace WebAutopark.Controllers
         //CREATE
         public async Task<IActionResult> Create()
         {
-            ViewBag.Colors = Enum.GetValues(typeof(Color)).Cast<Color>();
+            ViewBag.Colors = Enum.GetValues(typeof(Color))
+                                 .Cast<Color>();
+
             ViewBag.Types = await _vehicleTypeDtoService.GetAll();
             return View();
         }
@@ -57,9 +63,11 @@ namespace WebAutopark.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(VehicleViewModel vehicleViewModel)
         {
-            await _vehicleDtoService.Create(
-                _mapper.Map<VehicleDto>(vehicleViewModel));
-
+            if (ModelState.IsValid)
+            {
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                await _vehicleDtoService.Create(vehicleDto);
+            }
             return RedirectToAction("Index");
         }
 
@@ -68,10 +76,12 @@ namespace WebAutopark.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var itemDto = await _vehicleDtoService.GetById(id);
-            if (itemDto != null)
-                return View(_mapper.Map<VehicleViewModel>(itemDto));
-
+            var vehicleDto = await _vehicleDtoService.GetById(id);
+            if (vehicleDto != null)
+            {
+                var vehicleView = _mapper.Map<VehicleViewModel>(vehicleDto);
+                return View(vehicleView);
+            }
             return NotFound();
         }
 
@@ -85,12 +95,15 @@ namespace WebAutopark.Controllers
         //UPDATE
         public async Task<IActionResult> Edit(int id)
         {
-            var item = await _vehicleDtoService.GetById(id);
-            if (item != null)
+            var vehicleDto = await _vehicleDtoService.GetById(id);
+            if (vehicleDto != null)
             {
-                ViewBag.Colors = Enum.GetValues(typeof(Color)).Cast<Color>();
+                ViewBag.Colors = Enum.GetValues(typeof(Color))
+                                     .Cast<Color>();
+
                 ViewBag.Types = await _vehicleTypeDtoService.GetAll();
-                return View(_mapper.Map<VehicleViewModel>(item));
+                var vehicleView = _mapper.Map<VehicleViewModel>(vehicleDto);
+                return View(vehicleView);
             }
             return NotFound();
         }
@@ -98,9 +111,11 @@ namespace WebAutopark.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(VehicleViewModel vehicleViewModel)
         {
-            await _vehicleDtoService.Update(
-                _mapper.Map<VehicleDto>(vehicleViewModel));
-
+            if (ModelState.IsValid)
+            {
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                await _vehicleDtoService.Update(vehicleDto);
+            }
             return RedirectToAction("Index");
         }
     }

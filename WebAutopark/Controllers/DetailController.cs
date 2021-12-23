@@ -26,7 +26,8 @@ namespace WebAutopark.Controllers
         public async Task<IActionResult> Index()
         {
             var detailsDto = await _detailDtoService.GetAll();
-            return View(_mapper.Map<List<DetailViewModel>>(detailsDto));
+            var detailsView = _mapper.Map<List<DetailViewModel>>(detailsDto);
+            return View(detailsView);
         }
 
         //CREATE
@@ -38,27 +39,34 @@ namespace WebAutopark.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(DetailViewModel detailViewModel)
         {
-            await _detailDtoService.Create(
-                _mapper.Map<DetailDto>(detailViewModel));
-
+            if (ModelState.IsValid)
+            {
+                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
+                await _detailDtoService.Create(detailDto);
+            }
             return RedirectToAction("Index");
         }
 
         //UPDATE
         public async Task<IActionResult> Edit(int id)
         {
-            var item = await _detailDtoService.GetById(id);
-            if (item != null)
-                return View(_mapper.Map<DetailViewModel>(item));
+            var detailDto = await _detailDtoService.GetById(id);
+            if (detailDto != null)
+            {
+                var detailView = _mapper.Map<DetailViewModel>(detailDto);
+                return View(detailView);
+            }
             return NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(DetailViewModel detailViewModel)
         {
-            await _detailDtoService.Update(
-                _mapper.Map<DetailDto>(detailViewModel));
-
+            if (ModelState.IsValid)
+            {
+                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
+                await _detailDtoService.Update(detailDto);
+            }
             return RedirectToAction("Index");
         }
 
@@ -67,9 +75,12 @@ namespace WebAutopark.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var itemDto = await _detailDtoService.GetById(id);
-            if (itemDto != null)
-                return View(_mapper.Map<DetailViewModel>(itemDto));
+            var detailDto = await _detailDtoService.GetById(id);
+            if (detailDto != null)
+            {
+                var detailView = _mapper.Map<DetailViewModel>(detailDto);
+                return View(detailView);
+            }
 
             return NotFound();
         }

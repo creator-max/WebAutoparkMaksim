@@ -41,6 +41,5 @@ namespace WebAutopark.Models
         public Color Color { get; set; }
 
         public int VehicleTypeId { get; set; }
-        public VehicleTypeDto VehicleType { get; set; }
     }
 }
