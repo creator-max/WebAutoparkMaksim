@@ -1,18 +1,14 @@
 ﻿using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebAutopark.DataAccesLayer.Entities;
-using WebAutopark.DataAccesLayer.Interfaces;
 using WebAutopark.Models;
 
 namespace WebAutopark.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        public IActionResult Index()
         {
+            return View();
         }
 
         public IActionResult Privacy()
