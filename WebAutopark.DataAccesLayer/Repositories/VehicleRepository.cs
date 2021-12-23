@@ -14,7 +14,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                              "WHERE VehicleId = @VehicleId ";
 
         private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, " +
-                                            "YearOfIssue, Weight, TankCapacity, LicensePlat " +
+                                            "YearOfIssue, Weight, TankCapacity, LicensePlat, " +
                                             "Mileage, Color, Price, ImageLink) " +
                                             "VALUES(@VehicleTypeId, @Model, @YearOfIssue, " +
                                             "@Weight, @TankCapacity, @LicensePlat, " +

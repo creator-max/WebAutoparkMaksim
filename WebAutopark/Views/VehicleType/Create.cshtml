@@ -1,7 +1,7 @@
-﻿@model WebAutopark.DataAccesLayer.Entities.VehicleType
+﻿@model WebAutopark.Models.VehicleTypeViewModel
 
 @{
-    ViewData["Title"] = "NewType";
+    ViewData["Title"] = "New Type";
 }
 <h2>@ViewData["Title"]</h2>
 
@@ -20,11 +20,11 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+            <input type="submit" value="Save" class="btn btn-outline-secondary" />
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-controller="VehicleType" asp-action="Index">Вернуться к списку</a>
+    <a asp-controller="VehicleType" asp-action="Index">Back to the list</a>
 </div>

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark", "WebAutopark\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark.DataAccesLayer", "WebAutopark.DataAccesLayer\WebAutopark.DataAccesLayer.csproj", "{1884D9F8-2230-4F58-962A-F5A50410A88E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark.BusinessLogicLayer", "WebAutopark.BusinessLogicLayer\WebAutopark.BusinessLogicLayer.csproj", "{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1884D9F8-2230-4F58-962A-F5A50410A88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

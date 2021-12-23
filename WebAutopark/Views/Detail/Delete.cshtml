@@ -1,6 +1,6 @@
-﻿@model WebAutopark.DataAccesLayer.Entities.Detail
+﻿@model WebAutopark.Models.DetailViewModel
 @{
-    ViewData["Title"] = "Удаление детали";
+    ViewData["Title"] = "Delete Detail";
 }
 <h2>@ViewBag.Title</h2>
 <div>
@@ -19,7 +19,7 @@
     <div>
         <form asp-controller="Detail" asp-action="Delete" method="post">
             <div class="form-group">
-                <input type="submit" class="btn btn-default" value="Удалить" />
+                <input type="submit" class="btn btn-default" value="Delete" />
             </div>
         </form>
     </div>

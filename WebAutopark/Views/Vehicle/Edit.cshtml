@@ -1,10 +1,8 @@
-﻿@model WebAutopark.DataAccesLayer.Entities.Vehicle
+﻿@model WebAutopark.Models.VehicleViewModel
 @{
-    ViewData["Title"] = "Редактировать автомобиль";
+    ViewData["Title"] = "Update Vehicle";
 }
 
-@using WebAutopark.Controllers;
-@using WebAutopark.DataAccesLayer.Entities;
 <h2>@ViewData["Title"].</h2>
 
 <form asp-action="Edit" asp-controller="Vehicle">
@@ -14,7 +12,7 @@
         <div class="form-group">
             <label asp-for="VehicleType"></label>
             <select class="form-select custom-select" asp-for="VehicleTypeId">
-                @foreach (var type in VehicleController.VehicleTypes)
+                @foreach (var type in ViewBag.Types)
                 {
                     <option value="@type.TypeId">@type.TypeName</option>
                 }
@@ -23,7 +21,7 @@
         <div class="form-group">
             <label asp-for="Color"></label>
             <select class="form-select custom-select" asp-for="Color">
-                @foreach (var color in Enum.GetValues(typeof(Color)).Cast<Color>())
+                @foreach (var color in ViewBag.Colors)
                 {
                     <option value="@color">@color</option>
                 }
@@ -71,11 +69,11 @@
             <span asp-validation-for="Mileage" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+            <input type="submit" value="Save" class="btn btn-outline-secondary" />
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-controller="Vehicle" asp-action="Index">Вернуться к списку</a>
+    <a asp-controller="Vehicle" asp-action="Index">Back to the list</a>
 </div>

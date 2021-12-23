@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WebAutopark.DataAccesLayer.Entities.Vehicle>
+﻿@model IEnumerable<WebAutopark.Models.VehicleViewModel>
 
 @{ 
-    ViewData["Title"] = "ViewVehicles"; 
+    ViewData["Title"] = "View Vehicles"; 
 }
 
 <hr />
@@ -15,9 +15,6 @@
             </th>
             <th>
                 Model
-            </th>
-            <th>
-                Price
             </th>
             <th>
                 Year
@@ -38,12 +35,11 @@
                 Color
             </th>
             <th>
-                VehicleType
+                VehicleTypeId
             </th>
             <th>
-                Image
+
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -55,9 +51,6 @@
             </td>
             <td>
                 @item.Model
-            </td>
-            <td>
-                @item.Price
             </td>
             <td>
                 @item.YearOfIssue
@@ -81,16 +74,13 @@
                 @item.VehicleTypeId
             </td>
             <td>
-                @item.ImageLink
-            </td>
-            <td>
-                <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">Изменить</a> |
-                <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">Удалить</a>
+                <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">Udpate</a> |
+                <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">Delete</a>
             </td>
         </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-controller="Vehicle" asp-action="Create">Добавить</a>
+    <a asp-controller="Vehicle" asp-action="Create">Add</a>
 </p>

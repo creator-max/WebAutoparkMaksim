@@ -1,69 +1,83 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebAutopark.DataAccesLayer.Entities;
-using WebAutopark.DataAccesLayer.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using WebAutopark.BusinessLogicLayer.DataTransferObjects;
+using WebAutopark.BusinessLogicLayer.Interfaces;
+using WebAutopark.Models;
 
 namespace WebAutopark.Controllers
 {
     public class VehicleTypeController : Controller
     {
-        private IRepository<VehicleType> _vehicleTypeRepository;
+        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+        private readonly IMapper _mapper;
 
-        public VehicleTypeController(IRepository<VehicleType> typeRepository)
+        public VehicleTypeController(IDtoService<VehicleTypeDto> dtoService,
+                                     IMapper mapper)
         {
-            _vehicleTypeRepository = typeRepository;
+            _vehicleTypeDtoService = dtoService;
+            _mapper = mapper;
         }
 
+
+        //GETALL
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var vehicleTypesDto = await _vehicleTypeDtoService.GetAll();
+            return View(_mapper.Map<List<VehicleTypeViewModel>>(vehicleTypesDto));
+        }
+
+        //CREATE
         public ActionResult Create()
         {
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public async Task<IActionResult> Create(VehicleTypeViewModel vehicleTypeViewModel)
         {
-            var typeList = await _vehicleTypeRepository.GetAll();
+            await _vehicleTypeDtoService.Create(
+                _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel));
 
-            return View(typeList);
+            return RedirectToAction("Index");
         }
 
+        //UPDATE
         public async Task<IActionResult> Edit(int id)
         {
-            var item = await _vehicleTypeRepository.GetById(id);
+            var item = await _vehicleTypeDtoService.GetById(id);
             if (item != null)
-                return View(item);
+                return View(_mapper.Map<VehicleTypeViewModel>(item));
             return NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(VehicleType vehicleType)
+        public async Task<IActionResult> Edit(VehicleTypeViewModel vehicleTypeViewModel)
         {
-            await _vehicleTypeRepository.Update(vehicleType);
+            await _vehicleTypeDtoService.Update(
+                _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel));
+
             return RedirectToAction("Index");
         }
 
+        //DELETE
         [HttpGet]
         [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var item = await _vehicleTypeRepository.GetById(id);
-            if (item != null)
-                return View(item);
+            var itemDto = await _vehicleTypeDtoService.GetById(id);
+            if (itemDto != null)
+                return View(_mapper.Map<VehicleTypeViewModel>(itemDto));
+
             return NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _vehicleTypeRepository.Delete(id);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(VehicleType type)
-        {
-            await _vehicleTypeRepository.Create(type);
-
+            await _vehicleTypeDtoService.Delete(id);
             return RedirectToAction("Index");
         }
     }

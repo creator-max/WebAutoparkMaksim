@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAutopark.DataAccesLayer.Entities.Detail>
+﻿@model IEnumerable<WebAutopark.Models.DetailViewModel>
 
 @{
     ViewData["Title"] = "ViewDetails";
@@ -30,13 +30,13 @@
                     @item.DetailName
                 </td>
                 <td>
-                    <a asp-controller="Detail" asp-action="Edit" asp-route-id="@item.DetailId">Изменить</a> |
-                    <a asp-controller="Detail" asp-action="Delete" asp-route-id="@item.DetailId">Удалить</a>
+                    <a asp-controller="Detail" asp-action="Edit" asp-route-id="@item.DetailId">Udpate</a> |
+                    <a asp-controller="Detail" asp-action="Delete" asp-route-id="@item.DetailId">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-controller="Detail" asp-action="Create">Добавить</a>
+    <a asp-controller="Detail" asp-action="Create">Add</a>
 </p>

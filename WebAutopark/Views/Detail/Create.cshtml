@@ -1,7 +1,7 @@
-﻿@model WebAutopark.DataAccesLayer.Entities.Detail
+﻿@model WebAutopark.Models.DetailViewModel
 
 @{
-    ViewData["Title"] = "NewDetail";
+    ViewData["Title"] = "New Detail";
 }
 <h2>@ViewData["Title"]</h2>
 
@@ -14,11 +14,11 @@
             <span asp-validation-for="DetailName" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+            <input type="submit" value="Save" class="btn btn-outline-secondary" />
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-controller="Vehicle" asp-action="Index">Вернуться к списку</a>
+    <a asp-controller="Vehicle" asp-action="Index">Back to the list</a>
 </div>

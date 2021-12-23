@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAutopark.DataAccesLayer.Entities.VehicleType>
+﻿@model IEnumerable<WebAutopark.Models.VehicleTypeViewModel>
 
 @{
     ViewData["Title"] = "ViewVehicleTypes";
@@ -35,13 +35,13 @@
                 @item.TaxCoefficient
             </td>
             <td>
-                <a asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.TypeId">Изменить</a> |
-                <a asp-controller="VehicleType" asp-action="Delete" asp-route-id="@item.TypeId">Удалить</a>
+                <a asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.TypeId">Update</a> |
+                <a asp-controller="VehicleType" asp-action="Delete" asp-route-id="@item.TypeId">Delete</a>
             </td>
         </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-controller="VehicleType" asp-action="Create">Добавить</a>
+    <a asp-controller="VehicleType" asp-action="Create">Add</a>
 </p>
