@@ -12,12 +12,12 @@ namespace WebAutopark.Controllers
 {
     public class VehicleController : Controller
     {
-        private readonly IDtoService<VehicleDto> _vehicleDtoService;
-        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+        private readonly IDtoService<VehicleDTO> _vehicleDtoService;
+        private readonly IDtoService<VehicleTypeDTO> _vehicleTypeDtoService;
         private readonly IMapper _mapper;
 
-        public VehicleController(IDtoService<VehicleDto> vehicleDtoService,
-                                 IDtoService<VehicleTypeDto> vehicleTypeDtoService,
+        public VehicleController(IDtoService<VehicleDTO> vehicleDtoService,
+                                 IDtoService<VehicleTypeDTO> vehicleTypeDtoService,
                                  IMapper mapper)
         {
             _vehicleDtoService = vehicleDtoService;
@@ -25,37 +25,26 @@ namespace WebAutopark.Controllers
             _mapper = mapper;
         }
 
-        //GETALL
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var vehiclesDto = await _vehicleDtoService.GetAll();
-            var vehiclesView = _mapper.Map<List<VehicleViewModel>>(vehiclesDto);
 
+            var searchName = Request.Query.FirstOrDefault(p => p.Key == "searchName").Value.ToString();
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                vehiclesDto = vehiclesDto.Where(v => v.Model
+                    .Contains(searchName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            var vehiclesView = _mapper.Map<List<VehicleViewModel>>(vehiclesDto);
             return View(vehiclesView);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string name)
-        {
-            if (name != null)
-            {
-                var vehiclesDto = await _vehicleDtoService.GetAll();
-                vehiclesDto = vehiclesDto.Where(v => v.Model
-                    .Equals(name, StringComparison.OrdinalIgnoreCase));
-
-                var vehiclesView = _mapper.Map<List<VehicleViewModel>>(vehiclesDto);
-                return View(vehiclesView);
-            }
-            return RedirectToAction("Index");
-        }
-
-        //CREATE
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Colors = Enum.GetValues(typeof(Color))
-                                 .Cast<Color>();
-
+            ViewBag.Colors = Enum.GetValues(typeof(Color)).Cast<Color>();
             ViewBag.Types = await _vehicleTypeDtoService.GetAll();
             return View();
         }
@@ -65,23 +54,24 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                var vehicleDto = _mapper.Map<VehicleDTO>(vehicleViewModel);
                 await _vehicleDtoService.Create(vehicleDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
-        //DELETE
         [HttpGet]
-        [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var vehicleDto = await _vehicleDtoService.GetById(id);
+
             if (vehicleDto != null)
             {
                 var vehicleView = _mapper.Map<VehicleViewModel>(vehicleDto);
                 return View(vehicleView);
             }
+
             return NotFound();
         }
 
@@ -89,13 +79,14 @@ namespace WebAutopark.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _vehicleDtoService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
-        //UPDATE
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var vehicleDto = await _vehicleDtoService.GetById(id);
+
             if (vehicleDto != null)
             {
                 ViewBag.Colors = Enum.GetValues(typeof(Color))
@@ -105,6 +96,7 @@ namespace WebAutopark.Controllers
                 var vehicleView = _mapper.Map<VehicleViewModel>(vehicleDto);
                 return View(vehicleView);
             }
+
             return NotFound();
         }
 
@@ -113,10 +105,11 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                var vehicleDto = _mapper.Map<VehicleDTO>(vehicleViewModel);
                 await _vehicleDtoService.Update(vehicleDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

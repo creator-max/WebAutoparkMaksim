@@ -32,22 +32,22 @@ namespace WebAutopark.BusinessLogicLayer.Services.Base
 
         public async Task<IEnumerable<TDto>> GetAll()
         {
-            var entities =  await _repository.GetAll();
-            var tdoItems = _mapper.Map<List<TDto>>(entities);
-            return tdoItems;
+            var entities = await _repository.GetAll();
+            var dtoItems = _mapper.Map<List<TDto>>(entities);
+            return dtoItems;
         }
 
         public async Task<TDto> GetById(int id)
         {
             var entity = await _repository.GetById(id);
-            var tdoItem = _mapper.Map<TDto>(entity);
-            return tdoItem;
+            var dtoItem = _mapper.Map<TDto>(entity);
+            return dtoItem;
         }
 
-        public async Task Update(TDto item)
+        public Task Update(TDto item)
         {
             var entity = _mapper.Map<TEntity>(item);
-            await _repository.Update(entity);
+            return _repository.Update(entity);
         }
     }
 }

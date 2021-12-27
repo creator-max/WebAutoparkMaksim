@@ -4,14 +4,13 @@ using WebAutopark.Models;
 
 namespace WebAutopark.MapperProfiles
 {
-    public class ViewModelDtoProfile : Profile
+    public class ViewModelDTOProfile : Profile
     {
-        public ViewModelDtoProfile()
+        public ViewModelDTOProfile()
         {
-            CreateMap<DetailViewModel, DetailDto>().ReverseMap();
-            CreateMap<VehicleTypeViewModel, VehicleTypeDto>().ReverseMap();
-            CreateMap<VehicleViewModel, VehicleDto>().ReverseMap();
-
+            CreateMap<DetailViewModel, DetailDTO>().ReverseMap();
+            CreateMap<VehicleTypeViewModel, VehicleTypeDTO>().ReverseMap();
+            CreateMap<VehicleViewModel, VehicleDTO>().ReverseMap();
         }
     }
 }

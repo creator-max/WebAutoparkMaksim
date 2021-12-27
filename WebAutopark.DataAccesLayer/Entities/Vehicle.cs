@@ -9,7 +9,7 @@
         public int YearOfIssue { get; set; }
         public double Weight { get; set; }
         public double TankCapacity { get; set; }
-        public string LicensePlat { get; set; }
+        public string LicensePlate { get; set; }
         public double Mileage { get; set; }
         public Color Color { get; set; }
         public int VehicleTypeId { get; set; }

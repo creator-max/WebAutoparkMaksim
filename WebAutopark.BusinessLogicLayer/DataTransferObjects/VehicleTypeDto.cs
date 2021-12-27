@@ -1,8 +1,6 @@
-﻿using WebAutopark.BusinessLogicLayer.Interfaces;
-
-namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
+﻿namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
 {
-    public class VehicleTypeDto
+    public class VehicleTypeDTO
     {
         public int TypeId { get; set; }
         public string TypeName { get; set; }

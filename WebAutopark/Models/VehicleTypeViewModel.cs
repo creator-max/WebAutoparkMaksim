@@ -12,7 +12,7 @@ namespace WebAutopark.Models
         public string TypeName { get; set; }
 
         [Required]
-        [Range(0.5, 3, ErrorMessage="Tax Coefficient must be from 0.5 to 3.0")]
+        [Range(0.5, 3, ErrorMessage = "Tax Coefficient must be from 0.5 to 3.0")]
         public double TaxCoefficient { get; set; }
     }
 }

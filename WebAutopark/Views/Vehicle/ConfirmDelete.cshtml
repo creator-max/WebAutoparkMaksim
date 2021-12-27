@@ -35,9 +35,9 @@
             @Model.TankCapacity
         </dd>
 
-        <dt>LicensePlat</dt>
+        <dt>LicensePlate</dt>
         <dd>
-            @Model.LicensePlat
+            @Model.LicensePlate
         </dd>
 
         <dt>Image</dt>
@@ -52,7 +52,7 @@
     </dl>
 
     <div>
-        <form asp-controller="Vehicle" asp-action="Delete" method="post">
+        <form asp-controller="Vehicle" asp-action="Delete" asp-route-id="@Model.VehicleId" method="post">
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="Delete" />
             </div>

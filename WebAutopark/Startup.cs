@@ -21,12 +21,11 @@ namespace WebAutopark
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddRepositories();
-            services.AddDtoServices();
-            services.AddAutoMapper(
-                typeof(DtoEntityProfile), 
-                typeof(ViewModelDtoProfile)
-                );
+
+            services.AddRepositories()
+                    .AddDtoServices()
+                    .AddAutoMapper(typeof(DTOEntityProfile), 
+                                   typeof(ViewModelDTOProfile));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

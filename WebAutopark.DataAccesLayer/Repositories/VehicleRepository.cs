@@ -17,7 +17,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "YearOfIssue, Weight, TankCapacity, LicensePlat, " +
                                             "Mileage, Color, Price, ImageLink) " +
                                             "VALUES(@VehicleTypeId, @Model, @YearOfIssue, " +
-                                            "@Weight, @TankCapacity, @LicensePlat, " +
+                                            "@Weight, @TankCapacity, @LicensePlate, " +
                                             "@Mileage, @Color, @Price, @ImageLink)";
 
         private const string QueryDelete = "DELETE FROM Vehicles " +
@@ -29,7 +29,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "YearOfIssue   = @YearOfIssue, " +
                                             "Weight        = @Weight, " +
                                             "TankCapacity  = @TankCapacity, " +
-                                            "LicensePlat   = @LicensePlat, " +
+                                            "LicensePlat   = @LicensePlate, " +
                                             "Mileage       = @Mileage, " +
                                             "Color         = @Color," +
                                             "ImageLink     = @ImageLink," +

@@ -1,4 +1,4 @@
-﻿@model WebAutopark.Models.DetailViewModel
+﻿    @model WebAutopark.Models.DetailViewModel
 @{
     ViewData["Title"] = "Delete Detail";
 }
@@ -17,7 +17,7 @@
     </dl>
 
     <div>
-        <form asp-controller="Detail" asp-action="Delete" method="post">
+        <form asp-controller="Detail" asp-action="Delete" asp-route-id="@Model.DetailId" method="post">
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="Delete" />
             </div>

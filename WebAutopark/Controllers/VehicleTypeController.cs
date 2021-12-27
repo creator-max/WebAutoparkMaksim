@@ -10,18 +10,15 @@ namespace WebAutopark.Controllers
 {
     public class VehicleTypeController : Controller
     {
-        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+        private readonly IDtoService<VehicleTypeDTO> _vehicleTypeDtoService;
         private readonly IMapper _mapper;
 
-        public VehicleTypeController(IDtoService<VehicleTypeDto> dtoService,
-                                     IMapper mapper)
+        public VehicleTypeController(IDtoService<VehicleTypeDTO> dtoService, IMapper mapper)
         {
             _vehicleTypeDtoService = dtoService;
             _mapper = mapper;
         }
 
-
-        //GETALL
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -30,7 +27,7 @@ namespace WebAutopark.Controllers
             return View(vehicleTypesView);
         }
 
-        //CREATE
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -41,21 +38,24 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicletypeDto = _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel);
+                var vehicletypeDto = _mapper.Map<VehicleTypeDTO>(vehicleTypeViewModel);
                 await _vehicleTypeDtoService.Create(vehicletypeDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
-        //UPDATE
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var vehicleType = await _vehicleTypeDtoService.GetById(id);
+
             if (vehicleType != null)
             {
                 var vehicleTypeView = _mapper.Map<VehicleTypeViewModel>(vehicleType);
                 return View(vehicleTypeView);
             }
+
             return NotFound();
         }
 
@@ -64,23 +64,24 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleTypeDto = _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel);
+                var vehicleTypeDto = _mapper.Map<VehicleTypeDTO>(vehicleTypeViewModel);
                 await _vehicleTypeDtoService.Update(vehicleTypeDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
-        //DELETE
         [HttpGet]
-        [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var vehicleTypeDto = await _vehicleTypeDtoService.GetById(id);
+
             if (vehicleTypeDto != null)
             {
                 var vehicleTypeView = _mapper.Map<VehicleTypeViewModel>(vehicleTypeDto);
                 return View(vehicleTypeView);
             }
+
             return NotFound();
         }
 
@@ -88,7 +89,7 @@ namespace WebAutopark.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _vehicleTypeDtoService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

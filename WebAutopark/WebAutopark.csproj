@@ -12,11 +12,11 @@
 
     <ItemGroup>
       <None Include="Views\VehicleType\Create.cshtml" />
-      <None Include="Views\VehicleType\Delete.cshtml" />
+      <None Include="Views\VehicleType\ConfirmDelete.cshtml" />
       <None Include="Views\VehicleType\Edit.cshtml" />
       <None Include="Views\VehicleType\Index.cshtml" />
       <None Include="Views\Vehicle\Create.cshtml" />
-      <None Include="Views\Vehicle\Delete.cshtml" />
+      <None Include="Views\Vehicle\ConfirmDelete.cshtml" />
       <None Include="Views\Vehicle\Edit.cshtml" />
       <None Include="Views\Vehicle\Index.cshtml" />
     </ItemGroup>

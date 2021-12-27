@@ -26,7 +26,7 @@
                 TankCapacity
             </th>
             <th>
-                LicensePlat
+                LicensePlate
             </th>
             <th>
                 Mileage
@@ -62,7 +62,7 @@
                 @item.TankCapacity
             </td>
             <td>
-                @item.LicensePlat
+                @item.LicensePlate
             </td>
             <td>
                 @item.Mileage
@@ -75,7 +75,7 @@
             </td>
             <td>
                 <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">Udpate</a> |
-                <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">Delete</a>
+                <a asp-controller="Vehicle" asp-action="ConfirmDelete" asp-route-id="@item.VehicleId">Delete</a>
             </td>
         </tr>
         }

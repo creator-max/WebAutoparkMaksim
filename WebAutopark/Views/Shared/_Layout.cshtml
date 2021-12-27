@@ -28,8 +28,8 @@
                 </div>
             </div>
 
-            <form class="col-12 col-lg-3 mr-3" method="post" asp-controller="Vehicle" asp-action="Index">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." name="name" aria-label="Search">
+            <form class="col-12 col-lg-3 mr-3" method="get" asp-controller="Vehicle" asp-action="Index">
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." name="searchName" aria-label="Search">
             </form>
             @if (!User.Identity.IsAuthenticated)
             {

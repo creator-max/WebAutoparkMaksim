@@ -10,18 +10,15 @@ namespace WebAutopark.Controllers
 {
     public class DetailController : Controller
     {
-        private readonly IDtoService<DetailDto> _detailDtoService;
+        private readonly IDtoService<DetailDTO> _detailDtoService;
         private readonly IMapper _mapper;
 
-        public DetailController(IDtoService<DetailDto> dtoService, 
-                                IMapper mapper)
+        public DetailController(IDtoService<DetailDTO> dtoService, IMapper mapper)
         {
             _detailDtoService = dtoService;
             _mapper = mapper;
         }
 
-
-        //GETALL
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -30,7 +27,7 @@ namespace WebAutopark.Controllers
             return View(detailsView);
         }
 
-        //CREATE
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -41,21 +38,24 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
+                var detailDto = _mapper.Map<DetailDTO>(detailViewModel);
                 await _detailDtoService.Create(detailDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
-        //UPDATE
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var detailDto = await _detailDtoService.GetById(id);
+
             if (detailDto != null)
             {
                 var detailView = _mapper.Map<DetailViewModel>(detailDto);
                 return View(detailView);
             }
+
             return NotFound();
         }
 
@@ -64,18 +64,18 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
+                var detailDto = _mapper.Map<DetailDTO>(detailViewModel);
                 await _detailDtoService.Update(detailDto);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
-        //DELETE
         [HttpGet]
-        [ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var detailDto = await _detailDtoService.GetById(id);
+
             if (detailDto != null)
             {
                 var detailView = _mapper.Map<DetailViewModel>(detailDto);
@@ -89,7 +89,7 @@ namespace WebAutopark.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _detailDtoService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebAutopark.BusinessLogicLayer.Services
 {
-    public class VehicleService : BaseService<VehicleDto, Vehicle>
+    public class VehicleService : BaseService<VehicleDTO, Vehicle>
     {
         public VehicleService(IRepository<Vehicle> vehicleRepository, IMapper mapper)
             : base(vehicleRepository, mapper)

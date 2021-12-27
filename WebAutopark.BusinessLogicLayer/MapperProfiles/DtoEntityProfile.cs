@@ -4,13 +4,13 @@ using WebAutopark.DataAccesLayer.Entities;
 
 namespace WebAutopark.BusinessLogicLayer.MapperProfiles
 {
-    public class DtoEntityProfile : Profile
+    public class DTOEntityProfile : Profile
     {
-        public DtoEntityProfile()
+        public DTOEntityProfile()
         {
-            CreateMap<DetailDto, Detail>().ReverseMap();
-            CreateMap<VehicleDto, Vehicle>().ReverseMap();
-            CreateMap<VehicleTypeDto, VehicleType>().ReverseMap();
+            CreateMap<DetailDTO, Detail>().ReverseMap();
+            CreateMap<VehicleDTO, Vehicle>().ReverseMap();
+            CreateMap<VehicleTypeDTO, VehicleType>().ReverseMap();
         }
     }
 }

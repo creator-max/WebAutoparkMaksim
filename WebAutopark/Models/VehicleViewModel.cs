@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebAutopark.BusinessLogicLayer.DataTransferObjects;
 
@@ -21,7 +20,7 @@ namespace WebAutopark.Models
         public double Price { get; set; }
 
         [Required]
-        [Range(1950, 2022, ErrorMessage = "Year must be between 1950 and 2022")]
+        [Range(1, int.MaxValue)]
         public int YearOfIssue { get; set; }
 
         public double Weight { get; set; }
@@ -30,8 +29,7 @@ namespace WebAutopark.Models
         [Range(20, 100, ErrorMessage = "Tank Capacity must be between 20 and 100")]
         public double TankCapacity { get; set; }
 
-
-        public string LicensePlat { get; set; }
+        public string LicensePlate { get; set; }
 
         [Required]
         [Range(0, 1000000, ErrorMessage = "Mileage must be between 0 and 100000")]
