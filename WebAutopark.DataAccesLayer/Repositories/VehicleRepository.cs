@@ -14,11 +14,11 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                              "WHERE VehicleId = @VehicleId ";
 
         private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, " +
-                                            "YearOfIssue, Weight, TankCapacity, LicensePlat " +
-                                            "Mileage, Color) " +
+                                            "YearOfIssue, Weight, TankCapacity, LicensePlat, " +
+                                            "Mileage, Color, Price, ImageLink) " +
                                             "VALUES(@VehicleTypeId, @Model, @YearOfIssue, " +
-                                            "@Weight, @TankCapacity, @LicensePlat, " +
-                                            "@Mileage, @Color)";
+                                            "@Weight, @TankCapacity, @LicensePlate, " +
+                                            "@Mileage, @Color, @Price, @ImageLink)";
 
         private const string QueryDelete = "DELETE FROM Vehicles " +
                                             "WHERE VehicleId = @VehicleId ";
@@ -29,9 +29,11 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "YearOfIssue   = @YearOfIssue, " +
                                             "Weight        = @Weight, " +
                                             "TankCapacity  = @TankCapacity, " +
-                                            "LicensePlat   = @LicensePlat, " +
+                                            "LicensePlat   = @LicensePlate, " +
                                             "Mileage       = @Mileage, " +
-                                            "Color         = @Color " +
+                                            "Color         = @Color," +
+                                            "ImageLink     = @ImageLink," +
+                                            "Price         = @Price " +
                                             "WHERE VehicleId = @VehicleId ";
 
         public VehicleRepository(IConnectionStringProvider connectionStringProvider) :

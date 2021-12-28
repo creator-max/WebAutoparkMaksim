@@ -1,0 +1,24 @@
+﻿@model WebAutopark.Models.DetailViewModel
+
+@{
+    ViewData["Title"] = "New Detail";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" asp-controller="Detail">
+    <div>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label asp-for="DetailName"></label>
+            <input asp-for="DetailName" class="form-control form-control-sm" />
+            <span asp-validation-for="DetailName" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-outline-secondary" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Vehicle" asp-action="Index">Back to the list</a>
+</div>

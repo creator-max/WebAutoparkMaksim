@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebAutopark.Models.VehicleTypeViewModel>
+
+@{
+    ViewData["Title"] = "ViewVehicleTypes";
+}
+
+<hr />
+<h4 class="text-center my-1">Types list</h4>
+<hr />
+<table class="table table-striped table-borderless table-sm">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                TypeName
+            </th>
+            <th>
+                TaxCoefficient
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.TypeId
+            </td>
+            <td>
+                @item.TypeName
+            </td>
+            <td>
+                @item.TaxCoefficient
+            </td>
+            <td>
+                <a asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.TypeId">Update</a> |
+                <a asp-controller="VehicleType" asp-action="ConfirmDelete" asp-route-id="@item.TypeId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-controller="VehicleType" asp-action="Create">Add</a>
+</p>

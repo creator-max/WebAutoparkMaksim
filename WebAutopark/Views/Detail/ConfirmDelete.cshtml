@@ -1,0 +1,26 @@
+﻿    @model WebAutopark.Models.DetailViewModel
+@{
+    ViewData["Title"] = "Delete Detail";
+}
+<h2>@ViewBag.Title</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>ID</dt>
+        <dd>
+            @Model.DetailId
+        </dd>
+
+        <dt>Name</dt>
+        <dd>
+            @Model.DetailName
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Detail" asp-action="Delete" asp-route-id="@Model.DetailId" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Delete" />
+            </div>
+        </form>
+    </div>
+</div>

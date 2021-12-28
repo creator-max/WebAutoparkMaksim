@@ -1,0 +1,30 @@
+﻿@model WebAutopark.Models.VehicleTypeViewModel
+@{
+    ViewData["Title"] = "Update VehicleType";
+}
+<h2>@ViewData["Title"].</h2>
+
+<form asp-action="Edit" asp-controller="VehicleType">
+    <div>
+        <input type="hidden" asp-for="TypeId" />
+        <div class="form-group">
+            <label asp-for="TypeName"></label>
+            <input asp-for="TypeName" class="form-control  form-control-sm" />
+            <span asp-validation-for="TypeName" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TaxCoefficient"></label>
+            <input asp-for="TaxCoefficient" class="form-control  form-control-sm" />
+            <span asp-validation-for="TaxCoefficient" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="VehicleType" asp-action="Index">Back to the list</a>
+</div>
