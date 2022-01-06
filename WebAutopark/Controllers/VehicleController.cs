@@ -7,16 +7,18 @@ using WebAutopark.BusinessLogicLayer.Interfaces;
 using WebAutopark.Models;
 using System;
 using System.Linq;
+using WebAutopark.BusinessLogicLayer.Services.Enums;
+
 
 namespace WebAutopark.Controllers
 {
     public class VehicleController : Controller
     {
-        private readonly IDtoService<VehicleDTO> _vehicleDtoService;
+        private readonly IVehicleService _vehicleDtoService;
         private readonly IDtoService<VehicleTypeDTO> _vehicleTypeDtoService;
         private readonly IMapper _mapper;
 
-        public VehicleController(IDtoService<VehicleDTO> vehicleDtoService,
+        public VehicleController(IVehicleService vehicleDtoService,
                                  IDtoService<VehicleTypeDTO> vehicleTypeDtoService,
                                  IMapper mapper)
         {
@@ -26,11 +28,14 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchName, SortOrder sortOrder)
         {
-            var vehiclesDto = await _vehicleDtoService.GetAll();
+            ViewData["SortByModel"] = sortOrder == SortOrder.ModelAsc ? SortOrder.ModelDesc : SortOrder.ModelAsc;
+            ViewData["SortByMileage"] = sortOrder == SortOrder.MileageAsc ? SortOrder.MileageDesc : SortOrder.MileageAsc;
+            ViewData["SortByType"] = sortOrder == SortOrder.TypeAsc ? SortOrder.TypeDesc : SortOrder.TypeAsc;
 
-            var searchName = Request.Query.FirstOrDefault(p => p.Key == "searchName").Value.ToString();
+            var vehiclesDto = await _vehicleDtoService.GetAll(sortOrder);
+
             if (!String.IsNullOrEmpty(searchName))
             {
                 vehiclesDto = vehiclesDto.Where(v => v.Model
@@ -110,6 +115,15 @@ namespace WebAutopark.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Information(int id)
+        {
+            var vehicleDto = await _vehicleDtoService.GetById(id);
+            var vehicleView = _mapper.Map<VehicleViewModel>(vehicleDto);
+
+            return View(vehicleView);
         }
     }
 }

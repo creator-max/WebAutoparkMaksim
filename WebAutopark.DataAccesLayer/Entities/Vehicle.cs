@@ -12,6 +12,7 @@
         public string LicensePlate { get; set; }
         public double Mileage { get; set; }
         public Color Color { get; set; }
+        public double FuelConsumption { get; set; }
         public int VehicleTypeId { get; set; }
         public VehicleType VehicleType { get; set; }
     }

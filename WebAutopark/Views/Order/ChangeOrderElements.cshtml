@@ -1,0 +1,72 @@
+﻿@model WebAutopark.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "NewOrder";
+}
+<h2>@ViewData["Title"]</h2>
+
+
+<div>
+    <div>
+        <h6 class="d-inline-block">Order id:</h6>
+        <p class="m-2 d-inline-block">@Model.OrderId</p>
+    </div>
+
+    <div>
+        <h6 class="d-inline-block">For vehicle id:</h6>
+        <p class="m-2 d-inline-block">@Model.VehicleId</p>
+    </div>
+
+    <div>
+        <h6 class="d-inline-block">Date of creation:</h6>
+        <p class="m-2 d-inline-block">@Model.Date</p>
+    </div>
+    <hr />
+</div>
+
+<hr />
+
+<table class="table table-striped table-borderless table-sm">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                OrderElementId
+            </th>
+            <th>
+                DetailId
+            </th>
+            <th>
+                DetailName
+            </th>
+            <th>
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model.OrderElements)
+        {
+        <tr>
+            <td>
+                @item.OrderElementId
+            </td>
+            <td>
+                @item.DetailId
+            </td>
+            <td>
+                @item.Detail.DetailName
+            </td>
+            <td>    
+                @item.Quantity
+            </td>
+        </tr>
+        }
+    </tbody>
+    <a asp-controller="OrderElement" asp-action="Create" asp-route-orderId="@Model.OrderId">Add elements</a>
+</table>
+
+<hr>
+
+<a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="Information" asp-route-id="@Model.VehicleId">Back to vehicle</a>
+<a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="Index">Back to vehicles list</a>
+

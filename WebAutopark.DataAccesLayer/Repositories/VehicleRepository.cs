@@ -18,22 +18,23 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "Mileage, Color, Price, ImageLink) " +
                                             "VALUES(@VehicleTypeId, @Model, @YearOfIssue, " +
                                             "@Weight, @TankCapacity, @LicensePlate, " +
-                                            "@Mileage, @Color, @Price, @ImageLink)";
+                                            "@Mileage, @Color, @Price, @ImageLink, @FuelConsumption)";
 
         private const string QueryDelete = "DELETE FROM Vehicles " +
                                             "WHERE VehicleId = @VehicleId ";
 
         private const string QueryUpdate = "UPDATE Vehicles SET " +
-                                            "VehicleTypeId = @VehicleTypeId, " +
-                                            "Model         = @Model, " +
-                                            "YearOfIssue   = @YearOfIssue, " +
-                                            "Weight        = @Weight, " +
-                                            "TankCapacity  = @TankCapacity, " +
-                                            "LicensePlat   = @LicensePlate, " +
-                                            "Mileage       = @Mileage, " +
-                                            "Color         = @Color," +
-                                            "ImageLink     = @ImageLink," +
-                                            "Price         = @Price " +
+                                            "VehicleTypeId   = @VehicleTypeId, " +
+                                            "Model           = @Model, " +
+                                            "YearOfIssue     = @YearOfIssue, " +
+                                            "Weight          = @Weight, " +
+                                            "TankCapacity    = @TankCapacity, " +
+                                            "LicensePlat     = @LicensePlate, " +
+                                            "Mileage         = @Mileage, " +
+                                            "Color           = @Color," +
+                                            "ImageLink       = @ImageLink," +
+                                            "Price           = @Price," +
+                                            "FuelConsumption = @FuelConsumption " +
                                             "WHERE VehicleId = @VehicleId ";
 
         public VehicleRepository(IConnectionStringProvider connectionStringProvider) :

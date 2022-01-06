@@ -30,14 +30,14 @@ namespace WebAutopark.BusinessLogicLayer.Services.Base
             return _repository.Delete(id);
         }
 
-        public async Task<IEnumerable<TDto>> GetAll()
+        public virtual async Task<IEnumerable<TDto>> GetAll()
         {
             var entities = await _repository.GetAll();
             var dtoItems = _mapper.Map<List<TDto>>(entities);
             return dtoItems;
         }
 
-        public async Task<TDto> GetById(int id)
+        public virtual async Task<TDto> GetById(int id)
         {
             var entity = await _repository.GetById(id);
             var dtoItem = _mapper.Map<TDto>(entity);

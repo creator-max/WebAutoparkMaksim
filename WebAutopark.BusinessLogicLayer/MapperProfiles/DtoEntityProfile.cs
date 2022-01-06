@@ -11,6 +11,8 @@ namespace WebAutopark.BusinessLogicLayer.MapperProfiles
             CreateMap<DetailDTO, Detail>().ReverseMap();
             CreateMap<VehicleDTO, Vehicle>().ReverseMap();
             CreateMap<VehicleTypeDTO, VehicleType>().ReverseMap();
+            CreateMap<OrderDTO, Order>().ReverseMap();
+            CreateMap<OrderElementDTO, OrderElement>().ReverseMap();
         }
     }
 }

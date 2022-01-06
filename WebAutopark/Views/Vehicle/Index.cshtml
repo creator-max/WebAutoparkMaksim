@@ -14,28 +14,16 @@
                 Id
             </th>
             <th>
-                Model
+                Image
             </th>
             <th>
-                Year
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByModel">Model</a>
             </th>
             <th>
-                Weight
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByMileage">Mileage</a>
             </th>
             <th>
-                TankCapacity
-            </th>
-            <th>
-                LicensePlate
-            </th>
-            <th>
-                Mileage
-            </th>
-            <th>
-                Color
-            </th>
-            <th>
-                VehicleTypeId
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByType">VehicleTypeId</a>
             </th>
             <th>
 
@@ -49,38 +37,27 @@
             <td>
                 @item.VehicleId
             </td>
+            <td class = "w-25">
+                <img src="@(item.ImageLink is null ? Href("~/img/Cars/defaultCar.jpg") : Href($"~/img/Cars/{item.ImageLink}"))" class="card-img">
+            </td>
             <td>
                 @item.Model
             </td>
             <td>
-                @item.YearOfIssue
-            </td>
-            <td>
-                @item.Weight
-            </td>
-            <td>
-                @item.TankCapacity
-            </td>
-            <td>
-                @item.LicensePlate
-            </td>
-            <td>
                 @item.Mileage
             </td>
-            <td>
-                @item.Color
+            <td>    
+                @item.VehicleType.TypeName
             </td>
             <td>
-                @item.VehicleTypeId
-            </td>
-            <td>
-                <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">Udpate</a> |
-                <a asp-controller="Vehicle" asp-action="ConfirmDelete" asp-route-id="@item.VehicleId">Delete</a>
+                <a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.VehicleId">Udpate</a> |
+                <a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="ConfirmDelete" asp-route-id="@item.VehicleId">Delete</a> |
+                <a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="Information" asp-route-id="@item.VehicleId">Info</a>
             </td>
         </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-controller="Vehicle" asp-action="Create">Add</a>
+    <a asp-controller="Vehicle" class="btn btn-outline-secondary" asp-action="Create">Add</a>
 </p>
