@@ -42,7 +42,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
         {
             var order = new {
                 VehicleId = vehicleId, 
-                Date = DateTime.UtcNow 
+                Date = DateTime.Now 
             };
 
             return await Connection.QueryFirstOrDefaultAsync<Order>(QueryCreateAndReturn, order);
