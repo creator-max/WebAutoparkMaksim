@@ -49,12 +49,13 @@ namespace WebAutopark.Models
         public double FuelConsumption { get; set; }
 
         public int VehicleTypeId { get; set; }
+
         public VehicleTypeViewModel VehicleType { get; set; }
 
-        public double GetCalcTaxPerMonth => Weight * WeightCoefficient +
+        public double GetCalcTaxPerMonth() => Weight * WeightCoefficient +
             VehicleType.TaxCoefficient * TaxCoefficient + TaxPerMonthAddition;
 
-        public double GetCalcMaxKm => FuelConsumption != 0 
+        public double GetCalcMaxKm() => FuelConsumption != 0 
             ? TankCapacity / FuelConsumption 
             : TankCapacity;
 

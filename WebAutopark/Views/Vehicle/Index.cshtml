@@ -17,13 +17,13 @@
                 Image
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByModel">Model</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByModel" asp-route-searchName="@ViewBag.CurrentSearchName">Model</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByMileage">Mileage</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByMileage" asp-route-searchName="@ViewBag.CurrentSearchName">Mileage</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByType">VehicleTypeId</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByType" asp-route-searchName="@ViewBag.CurrentSearchName">VehicleTypeId</a>
             </th>
             <th>
 

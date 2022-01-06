@@ -30,9 +30,11 @@ namespace WebAutopark.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string searchName, SortOrder sortOrder)
         {
-            ViewData["SortByModel"] = sortOrder == SortOrder.ModelAsc ? SortOrder.ModelDesc : SortOrder.ModelAsc;
-            ViewData["SortByMileage"] = sortOrder == SortOrder.MileageAsc ? SortOrder.MileageDesc : SortOrder.MileageAsc;
-            ViewData["SortByType"] = sortOrder == SortOrder.TypeAsc ? SortOrder.TypeDesc : SortOrder.TypeAsc;
+            ViewBag.SortByModel = sortOrder == SortOrder.ModelAsc ? SortOrder.ModelDesc : SortOrder.ModelAsc;
+            ViewBag.SortByMileage = sortOrder == SortOrder.MileageAsc ? SortOrder.MileageDesc : SortOrder.MileageAsc;
+            ViewBag.SortByType = sortOrder == SortOrder.TypeAsc ? SortOrder.TypeDesc : SortOrder.TypeAsc;
+
+            ViewBag.CurrentSearchName = searchName;
 
             var vehiclesDto = await _vehicleDtoService.GetAll(sortOrder);
 
