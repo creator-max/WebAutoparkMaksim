@@ -12,15 +12,24 @@ namespace WebAutopark.Controllers
     {
         private readonly IOrderElementService _orderElementDtoService;
         private readonly IMapper _mapper;
-        private readonly IDtoService<DetailDTO> _detailService;
+        private readonly IDataService<DetailDto> _detailService;
 
         public OrderElementController(IOrderElementService orderElementService,
-                                      IDtoService<DetailDTO> detailService,
+                                      IDataService<DetailDto> detailService,
                                       IMapper mapper)
         {
             _orderElementDtoService = orderElementService;
             _mapper = mapper;
             _detailService = detailService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int orderId)
+        {
+            var orderElements = await _orderElementDtoService.GetAll(orderId);
+            var orderElementsView = _mapper.Map<List<OrderElementViewModel>>(orderElements);
+
+            return View(orderElementsView);
         }
 
         [HttpGet]
@@ -36,12 +45,15 @@ namespace WebAutopark.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(OrderElementViewModel orderElementView)
+        public async Task<IActionResult> Create(OrderElementViewModel orderElementView, bool createAnother)
         {
             if (ModelState.IsValid)
             {
-                var orderElementDto = _mapper.Map<OrderElementDTO>(orderElementView);
+                var orderElementDto = _mapper.Map<OrderElementDto>(orderElementView);
                 await _orderElementDtoService.Create(orderElementDto);
+
+                if (createAnother)
+                    return RedirectToAction(nameof(Create), new { orderId = orderElementView.OrderId });
             }
 
             return RedirectToAction("ChangeOrderElements", "Order", new { orderId = orderElementView.OrderId });

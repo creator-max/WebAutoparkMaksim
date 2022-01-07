@@ -8,11 +8,11 @@ namespace WebAutopark.MapperProfiles
     {
         public ViewModelDTOProfile()
         {
-            CreateMap<DetailViewModel, DetailDTO>().ReverseMap();
-            CreateMap<VehicleTypeViewModel, VehicleTypeDTO>().ReverseMap();
-            CreateMap<VehicleViewModel, VehicleDTO>().ReverseMap();
-            CreateMap<OrderViewModel, OrderDTO>().ReverseMap();
-            CreateMap<OrderElementViewModel, OrderElementDTO>().ReverseMap();
+            CreateMap<DetailViewModel, DetailDto>().ReverseMap();
+            CreateMap<VehicleTypeViewModel, VehicleTypeDto>().ReverseMap();
+            CreateMap<VehicleViewModel, VehicleDto>().ReverseMap();
+            CreateMap<OrderViewModel, OrderDto>().ReverseMap();
+            CreateMap<OrderElementViewModel, OrderElementDto>().ReverseMap();
         }
     }
 }

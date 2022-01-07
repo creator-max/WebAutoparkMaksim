@@ -10,10 +10,10 @@ namespace WebAutopark.Controllers
 {
     public class DetailController : Controller
     {
-        private readonly IDtoService<DetailDTO> _detailDtoService;
+        private readonly IDataService<DetailDto> _detailDtoService;
         private readonly IMapper _mapper;
 
-        public DetailController(IDtoService<DetailDTO> dtoService, IMapper mapper)
+        public DetailController(IDataService<DetailDto> dtoService, IMapper mapper)
         {
             _detailDtoService = dtoService;
             _mapper = mapper;
@@ -38,7 +38,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var detailDto = _mapper.Map<DetailDTO>(detailViewModel);
+                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
                 await _detailDtoService.Create(detailDto);
             }
 
@@ -64,7 +64,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var detailDto = _mapper.Map<DetailDTO>(detailViewModel);
+                var detailDto = _mapper.Map<DetailDto>(detailViewModel);
                 await _detailDtoService.Update(detailDto);
             }
 

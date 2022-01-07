@@ -36,7 +36,7 @@
                     @item.Date
                 </td>
                 <td>
-                    <a asp-controller="Order" class="btn btn-outline-secondary" asp-action="OrderInformation" asp-route-orderId="@item.OrderId">Info</a>
+                    <a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="Index" asp-route-orderId="@item.OrderId">Info</a>
                 </td>
             </tr>
         }

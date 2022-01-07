@@ -15,7 +15,7 @@ namespace WebAutopark.BusinessLogicLayer.Extensions
         {
             services.AddSingleton<IConnectionStringProvider, MsSqlStringProvider>();
             services.AddScoped<IRepository<Detail>, DetailRepository>();
-            services.AddScoped<IRepository<Vehicle>, VehicleRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IRepository<OrderElement>, OrderElementRepository>();
@@ -25,8 +25,8 @@ namespace WebAutopark.BusinessLogicLayer.Extensions
         public static IServiceCollection AddDtoServices(this IServiceCollection services)
         {
             services.AddScoped<IVehicleService, VehicleService>();
-            services.AddScoped<IDtoService<VehicleTypeDTO>, VehicleTypeService>();
-            services.AddScoped<IDtoService<DetailDTO>, DetailService>();
+            services.AddScoped<IDataService<VehicleTypeDto>, VehicleTypeService>();
+            services.AddScoped<IDataService<DetailDto>, DetailService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderElementService, OrderElementService>();
             return services;    

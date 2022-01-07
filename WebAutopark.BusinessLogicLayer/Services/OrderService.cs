@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebAutopark.BusinessLogicLayer.Services
 {
-    public class OrderService : BaseService<OrderDTO, Order>, IOrderService
+    public class OrderService : BaseService<OrderDto, Order>, IOrderService
     {
         private readonly IOrderRepository _orderRepository;
 
@@ -19,10 +19,10 @@ namespace WebAutopark.BusinessLogicLayer.Services
             _orderRepository = orderRepository;
         }
 
-        public async Task<OrderDTO> CreateAndReturn(int vehicleId)
+        public async Task<OrderDto> CreateAndReturn(int vehicleId)
         {
             var order = await _orderRepository.CreateAndReturn(vehicleId);
-            return _mapper.Map<OrderDTO>(order);
+            return _mapper.Map<OrderDto>(order);
         }
     }
 }

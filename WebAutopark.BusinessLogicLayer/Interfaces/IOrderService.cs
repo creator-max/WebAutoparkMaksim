@@ -3,8 +3,8 @@ using WebAutopark.BusinessLogicLayer.DataTransferObjects;
 
 namespace WebAutopark.BusinessLogicLayer.Interfaces
 {
-    public interface IOrderService : IDtoService<OrderDTO>
+    public interface IOrderService : IDataService<OrderDto>
     {
-        Task<OrderDTO> CreateAndReturn(int vehicleId);
+        Task<OrderDto> CreateAndReturn(int vehicleId);
     }
 }

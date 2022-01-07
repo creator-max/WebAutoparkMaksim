@@ -10,10 +10,10 @@ namespace WebAutopark.Controllers
 {
     public class VehicleTypeController : Controller
     {
-        private readonly IDtoService<VehicleTypeDTO> _vehicleTypeDtoService;
+        private readonly IDataService<VehicleTypeDto> _vehicleTypeDtoService;
         private readonly IMapper _mapper;
 
-        public VehicleTypeController(IDtoService<VehicleTypeDTO> dtoService, IMapper mapper)
+        public VehicleTypeController(IDataService<VehicleTypeDto> dtoService, IMapper mapper)
         {
             _vehicleTypeDtoService = dtoService;
             _mapper = mapper;
@@ -38,7 +38,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicletypeDto = _mapper.Map<VehicleTypeDTO>(vehicleTypeViewModel);
+                var vehicletypeDto = _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel);
                 await _vehicleTypeDtoService.Create(vehicletypeDto);
             }
 
@@ -64,7 +64,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleTypeDto = _mapper.Map<VehicleTypeDTO>(vehicleTypeViewModel);
+                var vehicleTypeDto = _mapper.Map<VehicleTypeDto>(vehicleTypeViewModel);
                 await _vehicleTypeDtoService.Update(vehicleTypeDto);
             }
 

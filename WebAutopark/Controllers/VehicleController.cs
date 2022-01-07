@@ -15,11 +15,11 @@ namespace WebAutopark.Controllers
     public class VehicleController : Controller
     {
         private readonly IVehicleService _vehicleDtoService;
-        private readonly IDtoService<VehicleTypeDTO> _vehicleTypeDtoService;
+        private readonly IDataService<VehicleTypeDto> _vehicleTypeDtoService;
         private readonly IMapper _mapper;
 
         public VehicleController(IVehicleService vehicleDtoService,
-                                 IDtoService<VehicleTypeDTO> vehicleTypeDtoService,
+                                 IDataService<VehicleTypeDto> vehicleTypeDtoService,
                                  IMapper mapper)
         {
             _vehicleDtoService = vehicleDtoService;
@@ -28,11 +28,11 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string searchName, SortOrder sortOrder)
+        public async Task<IActionResult> Index(string searchName, SortOrderDto sortOrder)
         {
-            ViewBag.SortByModel = sortOrder == SortOrder.ModelAsc ? SortOrder.ModelDesc : SortOrder.ModelAsc;
-            ViewBag.SortByMileage = sortOrder == SortOrder.MileageAsc ? SortOrder.MileageDesc : SortOrder.MileageAsc;
-            ViewBag.SortByType = sortOrder == SortOrder.TypeAsc ? SortOrder.TypeDesc : SortOrder.TypeAsc;
+            ViewBag.SortByModel = sortOrder == SortOrderDto.ModelAsc ? SortOrderDto.ModelDesc : SortOrderDto.ModelAsc;
+            ViewBag.SortByMileage = sortOrder == SortOrderDto.MileageAsc ? SortOrderDto.MileageDesc : SortOrderDto.MileageAsc;
+            ViewBag.SortByType = sortOrder == SortOrderDto.TypeAsc ? SortOrderDto.TypeDesc : SortOrderDto.TypeAsc;
 
             ViewBag.CurrentSearchName = searchName;
 
@@ -61,7 +61,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDTO>(vehicleViewModel);
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
                 await _vehicleDtoService.Create(vehicleDto);
             }
 
@@ -112,7 +112,7 @@ namespace WebAutopark.Controllers
         {
             if (ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDTO>(vehicleViewModel);
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
                 await _vehicleDtoService.Update(vehicleDto);
             }
 

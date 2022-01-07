@@ -46,21 +46,7 @@ namespace WebAutopark.Controllers
             var order = await _orderDtoService.GetById(orderId);
             var orderView = _mapper.Map<OrderViewModel>(order);
 
-            var orderElements = await _orderElementDtoService.GetAll(orderView.OrderId);
-            var orderElementsView = _mapper.Map<List<OrderElementViewModel>>(orderElements);
-
-            orderView.OrderElements = orderElementsView;
-
-            return View(orderView);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> OrderInformation(int orderId)
-        {
-            var order = await _orderDtoService.GetById(orderId);
-            var orderView = _mapper.Map<OrderViewModel>(order);
-
-            var orderElements = await _orderElementDtoService.GetAll(orderView.OrderId);
+            var orderElements = await _orderElementDtoService.GetAll(orderId);
             var orderElementsView = _mapper.Map<List<OrderElementViewModel>>(orderElements);
 
             orderView.OrderElements = orderElementsView;

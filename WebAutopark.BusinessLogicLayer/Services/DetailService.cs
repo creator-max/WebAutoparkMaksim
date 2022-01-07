@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace WebAutopark.BusinessLogicLayer.Services
 {
-    public class DetailService : BaseService<DetailDTO, Detail>
+    public class DetailService : BaseService<DetailDto, Detail>
     {
         public DetailService(IRepository<Detail> repository, IMapper mapper) 
             : base(repository, mapper)

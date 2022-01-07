@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace WebAutopark.BusinessLogicLayer.Services.Base
 {
-    public abstract class BaseService<TDto, TEntity> : IDtoService<TDto>
+    public abstract class BaseService<TDto, TEntity> : IDataService<TDto>
         where TDto : class
         where TEntity : class
     {

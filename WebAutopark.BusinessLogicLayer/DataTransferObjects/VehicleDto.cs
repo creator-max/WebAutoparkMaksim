@@ -1,6 +1,6 @@
 ﻿namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
 {
-    public class VehicleDTO
+    public class VehicleDto
     {
         public int VehicleId { get; set; }
         public string Model { get; set; }
@@ -14,6 +14,6 @@
         public Color Color { get; set; }
         public double FuelConsumption { get; set; }
         public int VehicleTypeId { get; set; }   
-        public VehicleTypeDTO VehicleType { get; set; }
+        public VehicleTypeDto VehicleType { get; set; }
     }
 }

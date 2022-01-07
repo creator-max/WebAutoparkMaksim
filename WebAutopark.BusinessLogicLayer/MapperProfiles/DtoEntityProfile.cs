@@ -1,18 +1,21 @@
 ﻿using AutoMapper;
 using WebAutopark.BusinessLogicLayer.DataTransferObjects;
+using WebAutopark.BusinessLogicLayer.Services.Enums;
 using WebAutopark.DataAccesLayer.Entities;
+using WebAutopark.DataAccesLayer.Repositories.Enums;
 
 namespace WebAutopark.BusinessLogicLayer.MapperProfiles
 {
-    public class DTOEntityProfile : Profile
+    public class DtoEntityProfile : Profile
     {
-        public DTOEntityProfile()
+        public DtoEntityProfile()
         {
-            CreateMap<DetailDTO, Detail>().ReverseMap();
-            CreateMap<VehicleDTO, Vehicle>().ReverseMap();
-            CreateMap<VehicleTypeDTO, VehicleType>().ReverseMap();
-            CreateMap<OrderDTO, Order>().ReverseMap();
-            CreateMap<OrderElementDTO, OrderElement>().ReverseMap();
+            CreateMap<DetailDto, Detail>().ReverseMap();
+            CreateMap<VehicleDto, Vehicle>().ReverseMap();
+            CreateMap<VehicleTypeDto, VehicleType>().ReverseMap();
+            CreateMap<OrderDto, Order>().ReverseMap();
+            CreateMap<OrderElementDto, OrderElement>().ReverseMap();
+            CreateMap<SortOrderDto, SortOrder>().ReverseMap();
         }
     }
 }

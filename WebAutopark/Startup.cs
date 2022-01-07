@@ -24,7 +24,7 @@ namespace WebAutopark
 
             services.AddRepositories()
                     .AddDtoServices()
-                    .AddAutoMapper(typeof(DTOEntityProfile), 
+                    .AddAutoMapper(typeof(DtoEntityProfile), 
                                    typeof(ViewModelDTOProfile));
         }
 

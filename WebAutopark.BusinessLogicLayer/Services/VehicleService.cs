@@ -6,49 +6,31 @@ using AutoMapper;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using WebAutopark.BusinessLogicLayer.Services.Enums;
-using System.Linq;
 using WebAutopark.BusinessLogicLayer.Interfaces;
-using WebAutopark.BusinessLogicLayer.Extensions;
+using WebAutopark.DataAccesLayer.Repositories.Enums;
 
 namespace WebAutopark.BusinessLogicLayer.Services
 {
-    public class VehicleService : BaseService<VehicleDTO, Vehicle>, IVehicleService
+    public class VehicleService : BaseService<VehicleDto, Vehicle>, IVehicleService
     {
-        private readonly IDtoService<VehicleTypeDTO> _vehicleTypeService;
+        private readonly IVehicleRepository _vehicleRepository;
 
-        public VehicleService(IRepository<Vehicle> vehicleRepository,
-                              IDtoService<VehicleTypeDTO> vehicleTypeService,
+        public VehicleService(IVehicleRepository vehicleRepository,
                               IMapper mapper)
 
             : base(vehicleRepository, mapper)
-        {
-            _vehicleTypeService = vehicleTypeService;
+        { 
+            _vehicleRepository = vehicleRepository;
         }
 
-        public override async Task<VehicleDTO> GetById(int id)
+        public async Task<IEnumerable<VehicleDto>> GetAll(SortOrderDto sortOrderDto)
         {
-            var vehicle = await base.GetById(id);
-            var type = await _vehicleTypeService.GetById(vehicle.VehicleTypeId);
+            var sortOrder = _mapper.Map<SortOrder>(sortOrderDto);
 
-            vehicle.VehicleType = type;
-            return vehicle;
-        }
+            var vehicles = await _vehicleRepository.GetAll(sortOrder);
+            var vehiclesDto = _mapper.Map<List<VehicleDto>>(vehicles);
 
-        public override async Task<IEnumerable<VehicleDTO>> GetAll()
-        {
-            var vehicles = await base.GetAll() as List<VehicleDTO>;
-            var vehicleTypes = await _vehicleTypeService.GetAll() as List<VehicleTypeDTO>;
-
-            vehicles.ForEach(v => v.VehicleType = vehicleTypes
-                    .FirstOrDefault(t => t.TypeId == v.VehicleTypeId));
-
-            return vehicles;
-        }
-
-        public async Task<IEnumerable<VehicleDTO>> GetAll(SortOrder sortOrder)
-        {
-            var vehicles = await GetAll();
-            return vehicles.SortVehiclesBy(sortOrder);
+            return vehiclesDto;
         }
     }
 }

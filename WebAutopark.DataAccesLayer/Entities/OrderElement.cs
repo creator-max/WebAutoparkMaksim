@@ -6,5 +6,6 @@
         public int OrderId { get; set; }
         public int DetailId { get; set; }
         public int Quantity { get; set; }
+        public Detail Detail { get; set; }
     }
 }

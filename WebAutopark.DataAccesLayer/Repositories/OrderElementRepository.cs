@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
 using WebAutopark.DataAccesLayer.Interfaces;
@@ -8,10 +9,14 @@ namespace WebAutopark.DataAccesLayer.Repositories
 {
     public class OrderElementRepository : BaseRepository, IRepository<OrderElement>
     {
-        private const string QueryGetAll = "SELECT * FROM OrderElements ";
+        private const string QueryGetAll = "SELECT * FROM [OrderElements] AS [OE] " +
+                                           "INNER JOIN [Details] AS [D] " +
+                                           "ON [OE].[DetailId] = [D].[DetailId] ";
 
-        private const string QueryGetById = "SELECT * FROM OrderElements " +
-                                            "WHERE OrderElementId = @OrderElementId ";
+        private const string QueryGetById = "SELECT * FROM [OrderElements] AS [OE] " +
+                                           "INNER JOIN [Details] AS [D] " +
+                                           "ON [OE].[DetailId] = [D].[DetailId] " +
+                                           "WHERE [OE].[OrderElementId] = @OrderElementId ";
 
         private const string QueryCreate = "INSERT INTO OrderElements(OrderId, DetailId, Quantity) " +
                                             "VALUES(@OrderId, @DetailId, @Quantity)";
@@ -36,10 +41,29 @@ namespace WebAutopark.DataAccesLayer.Repositories
             => await Connection.ExecuteAsync(QueryDelete, new { OrderElementId = id });
 
         public async Task<IEnumerable<OrderElement>> GetAll()
-            => await Connection.QueryAsync<OrderElement>(QueryGetAll);
+        {
+            return await Connection.QueryAsync<OrderElement, Detail, OrderElement>(QueryGetAll,
+                (orderElement, detail) =>
+                {
+                    orderElement.Detail = detail;
+                    return orderElement;
+                },
+                splitOn: "DetailId");
+        }
 
         public async Task<OrderElement> GetById(int id)
-            => await Connection.QueryFirstOrDefaultAsync<OrderElement>(QueryGetById, new { OrderElementId = id });
+        {
+            var orderElements = await Connection.QueryAsync<OrderElement, Detail, OrderElement>(QueryGetAll,
+                (orderElement, detail) =>
+                {
+                    orderElement.Detail = detail;
+                    return orderElement;
+                },
+                splitOn: "DetailId",
+                param: new { OrderElementId = id });
+
+            return orderElements.FirstOrDefault();
+        }
 
         public async Task Update(OrderElement item) 
             => await Connection.ExecuteAsync(QueryUpdate, item);

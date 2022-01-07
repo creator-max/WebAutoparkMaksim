@@ -5,8 +5,8 @@ using WebAutopark.BusinessLogicLayer.Services.Enums;
 
 namespace WebAutopark.BusinessLogicLayer.Interfaces
 {
-    public interface IVehicleService : IDtoService<VehicleDTO>
+    public interface IVehicleService : IDataService<VehicleDto>
     {
-        Task<IEnumerable<VehicleDTO>> GetAll(SortOrder sortOrder);
+        Task<IEnumerable<VehicleDto>> GetAll(SortOrderDto sortOrder);
     }
 }

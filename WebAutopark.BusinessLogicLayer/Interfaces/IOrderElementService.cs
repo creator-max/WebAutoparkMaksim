@@ -4,8 +4,8 @@ using WebAutopark.BusinessLogicLayer.DataTransferObjects;
 
 namespace WebAutopark.BusinessLogicLayer.Interfaces
 {
-    public interface IOrderElementService : IDtoService<OrderElementDTO>
+    public interface IOrderElementService : IDataService<OrderElementDto>
     {
-        Task<IEnumerable<OrderElementDTO>> GetAll(int orderId);
+        Task<IEnumerable<OrderElementDto>> GetAll(int orderId);
     }
 }

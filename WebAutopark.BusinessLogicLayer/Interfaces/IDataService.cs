@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WebAutopark.BusinessLogicLayer.Interfaces
 {
-    public interface IDtoService<T>
+    public interface IDataService<T>
         where T : class
     {
         Task<IEnumerable<T>> GetAll();
