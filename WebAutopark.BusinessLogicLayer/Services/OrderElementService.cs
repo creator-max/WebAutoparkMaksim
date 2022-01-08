@@ -12,8 +12,7 @@ namespace WebAutopark.BusinessLogicLayer.Services
 {
     public class OrderElementService : BaseService<OrderElementDto, OrderElement>, IOrderElementService
     {
-        public OrderElementService(IRepository<OrderElement> orderElementRepository,
-                                   IMapper mapper) 
+        public OrderElementService(IRepository<OrderElement> orderElementRepository, IMapper mapper) 
             : base(orderElementRepository, mapper)
         { }
 

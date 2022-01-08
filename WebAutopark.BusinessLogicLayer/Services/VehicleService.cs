@@ -15,8 +15,7 @@ namespace WebAutopark.BusinessLogicLayer.Services
     {
         private readonly IVehicleRepository _vehicleRepository;
 
-        public VehicleService(IVehicleRepository vehicleRepository,
-                              IMapper mapper)
+        public VehicleService(IVehicleRepository vehicleRepository, IMapper mapper)
 
             : base(vehicleRepository, mapper)
         { 

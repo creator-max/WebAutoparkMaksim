@@ -12,8 +12,7 @@ namespace WebAutopark.BusinessLogicLayer.Services
     {
         private readonly IOrderRepository _orderRepository;
 
-        public OrderService(IOrderRepository orderRepository,
-                            IMapper mapper) 
+        public OrderService(IOrderRepository orderRepository, IMapper mapper) 
             : base(orderRepository, mapper)
         {
             _orderRepository = orderRepository;
