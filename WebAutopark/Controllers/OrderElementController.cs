@@ -56,7 +56,7 @@ namespace WebAutopark.Controllers
                     return RedirectToAction(nameof(Create), new { orderId = orderElementView.OrderId });
             }
 
-            return RedirectToAction("ChangeOrderElements", "Order", new { orderId = orderElementView.OrderId });
+            return RedirectToAction("Index", "Order");
         }
     }
 }

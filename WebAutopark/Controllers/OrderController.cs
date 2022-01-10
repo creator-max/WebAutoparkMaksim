@@ -37,21 +37,7 @@ namespace WebAutopark.Controllers
         {
             var order = await _orderDtoService.CreateAndReturn(vehicleId);
 
-            return RedirectToAction(nameof(ChangeOrderElements), new { orderId = order.OrderId });
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> ChangeOrderElements(int orderId)
-        {
-            var order = await _orderDtoService.GetById(orderId);
-            var orderView = _mapper.Map<OrderViewModel>(order);
-
-            var orderElements = await _orderElementDtoService.GetAll(orderId);
-            var orderElementsView = _mapper.Map<List<OrderElementViewModel>>(orderElements);
-
-            orderView.OrderElements = orderElementsView;
-
-            return View(orderView);
+            return RedirectToAction("Create", "OrderElement", new { orderId = order.OrderId });
         }
     }
 }

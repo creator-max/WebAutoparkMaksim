@@ -1,4 +1,6 @@
-﻿namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
+﻿using WebAutopark.Core.Enums;
+
+namespace WebAutopark.BusinessLogicLayer.DataTransferObjects
 {
     public class VehicleDto
     {

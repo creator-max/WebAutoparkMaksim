@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using WebAutopark.BusinessLogicLayer.Extensions;
-using WebAutopark.BusinessLogicLayer.MapperProfiles;
-using WebAutopark.MapperProfiles;
 
 namespace WebAutopark
 {
@@ -24,8 +23,7 @@ namespace WebAutopark
 
             services.AddRepositories()
                     .AddDtoServices()
-                    .AddAutoMapper(typeof(DtoEntityProfile), 
-                                   typeof(ViewModelDTOProfile));
+                    .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

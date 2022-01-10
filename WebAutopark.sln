@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark", "WebAutopark\WebAutopark.csproj", "{96114A43-753E-4E7A-B6F1-20F13B939760}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark.DataAccesLayer", "WebAutopark.DataAccesLayer\WebAutopark.DataAccesLayer.csproj", "{1884D9F8-2230-4F58-962A-F5A50410A88E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark.BusinessLogicLayer", "WebAutopark.BusinessLogicLayer\WebAutopark.BusinessLogicLayer.csproj", "{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark.BusinessLogicLayer", "WebAutopark.BusinessLogicLayer\WebAutopark.BusinessLogicLayer.csproj", "{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark.Core", "WebAutopark.Core\WebAutopark.Core.csproj", "{8F0D56B8-0DC2-49D7-A2DC-785746B2B6AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED8A8A6C-7588-4300-B8C8-39E1EDC40F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F0D56B8-0DC2-49D7-A2DC-785746B2B6AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0D56B8-0DC2-49D7-A2DC-785746B2B6AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F0D56B8-0DC2-49D7-A2DC-785746B2B6AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F0D56B8-0DC2-49D7-A2DC-785746B2B6AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

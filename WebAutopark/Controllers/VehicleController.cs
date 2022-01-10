@@ -7,7 +7,7 @@ using WebAutopark.BusinessLogicLayer.Interfaces;
 using WebAutopark.Models;
 using System;
 using System.Linq;
-using WebAutopark.BusinessLogicLayer.Services.Enums;
+using WebAutopark.Core.Enums;
 
 
 namespace WebAutopark.Controllers
@@ -28,11 +28,11 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string searchName, SortOrderDto sortOrder)
+        public async Task<IActionResult> Index(string searchName, SortOrder sortOrder)
         {
-            ViewBag.SortByModel = sortOrder == SortOrderDto.ModelAsc ? SortOrderDto.ModelDesc : SortOrderDto.ModelAsc;
-            ViewBag.SortByMileage = sortOrder == SortOrderDto.MileageAsc ? SortOrderDto.MileageDesc : SortOrderDto.MileageAsc;
-            ViewBag.SortByType = sortOrder == SortOrderDto.TypeAsc ? SortOrderDto.TypeDesc : SortOrderDto.TypeAsc;
+            ViewBag.SortByModel = sortOrder == SortOrder.ModelAsc ? SortOrder.ModelDesc : SortOrder.ModelAsc;
+            ViewBag.SortByMileage = sortOrder == SortOrder.MileageAsc ? SortOrder.MileageDesc : SortOrder.MileageAsc;
+            ViewBag.SortByType = sortOrder == SortOrder.TypeAsc ? SortOrder.TypeDesc : SortOrder.TypeAsc;
 
             ViewBag.CurrentSearchName = searchName;
 

@@ -1,6 +1,6 @@
-﻿namespace WebAutopark.BusinessLogicLayer.Services.Enums
+﻿namespace WebAutopark.Core.Enums
 {
-    public enum SortOrderDto
+    public enum SortOrder
     {
         IdAsc,
         ModelAsc,

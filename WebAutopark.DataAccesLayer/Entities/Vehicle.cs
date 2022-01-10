@@ -1,4 +1,6 @@
-﻿namespace WebAutopark.DataAccesLayer.Entities
+﻿using WebAutopark.Core.Enums;
+
+namespace WebAutopark.DataAccesLayer.Entities
 {
     public class Vehicle
     {

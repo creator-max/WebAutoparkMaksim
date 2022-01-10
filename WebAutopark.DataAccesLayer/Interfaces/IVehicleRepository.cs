@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
-using WebAutopark.DataAccesLayer.Repositories.Enums;
+using WebAutopark.Core.Enums;
 
 namespace WebAutopark.DataAccesLayer.Interfaces
 {

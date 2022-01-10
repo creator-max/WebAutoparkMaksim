@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WebAutopark.BusinessLogicLayer.DataTransferObjects;
+using WebAutopark.Core.Enums;
 
 namespace WebAutopark.Models
 {

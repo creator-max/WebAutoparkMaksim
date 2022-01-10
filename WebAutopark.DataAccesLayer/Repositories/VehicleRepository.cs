@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
 using WebAutopark.DataAccesLayer.Interfaces;
 using System.Linq;
-using WebAutopark.DataAccesLayer.Repositories.Enums;
+using WebAutopark.Core.Enums;
 
 namespace WebAutopark.DataAccesLayer.Repositories
 {

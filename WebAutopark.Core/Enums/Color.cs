@@ -1,4 +1,4 @@
-﻿namespace WebAutopark.DataAccesLayer.Entities
+﻿namespace WebAutopark.Core.Enums
 {
     public enum Color
     {

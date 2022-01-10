@@ -5,9 +5,8 @@ using WebAutopark.DataAccesLayer.Interfaces;
 using AutoMapper;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using WebAutopark.BusinessLogicLayer.Services.Enums;
 using WebAutopark.BusinessLogicLayer.Interfaces;
-using WebAutopark.DataAccesLayer.Repositories.Enums;
+using WebAutopark.Core.Enums;
 
 namespace WebAutopark.BusinessLogicLayer.Services
 {
@@ -22,10 +21,8 @@ namespace WebAutopark.BusinessLogicLayer.Services
             _vehicleRepository = vehicleRepository;
         }
 
-        public async Task<IEnumerable<VehicleDto>> GetAll(SortOrderDto sortOrderDto)
+        public async Task<IEnumerable<VehicleDto>> GetAll(SortOrder sortOrder)
         {
-            var sortOrder = _mapper.Map<SortOrder>(sortOrderDto);
-
             var vehicles = await _vehicleRepository.GetAll(sortOrder);
             var vehiclesDto = _mapper.Map<List<VehicleDto>>(vehicles);
 
