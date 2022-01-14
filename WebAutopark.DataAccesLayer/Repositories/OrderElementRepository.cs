@@ -11,24 +11,24 @@ namespace WebAutopark.DataAccesLayer.Repositories
     {
         private const string QueryGetAll = "SELECT * FROM [OrderElements] AS [OE] " +
                                            "INNER JOIN [Details] AS [D] " +
-                                           "ON [OE].[DetailId] = [D].[DetailId] ";
+                                           "ON [OE].[DetailId] = [D].[DetailId]";
 
         private const string QueryGetById = "SELECT * FROM [OrderElements] AS [OE] " +
                                            "INNER JOIN [Details] AS [D] " +
                                            "ON [OE].[DetailId] = [D].[DetailId] " +
-                                           "WHERE [OE].[OrderElementId] = @OrderElementId ";
+                                           "WHERE [OE].[OrderElementId] = @OrderElementId";
 
         private const string QueryCreate = "INSERT INTO OrderElements(OrderId, DetailId, Quantity) " +
                                             "VALUES(@OrderId, @DetailId, @Quantity)";
 
         private const string QueryDelete = "DELETE FROM OrderElements " +
-                                           "WHERE OrderElementId = @OrderElementId ";
+                                           "WHERE OrderElementId = @OrderElementId";
 
         private const string QueryUpdate = "UPDATE OrderElements SET " +
                                            "OrderId = @OrderId, " +
                                            "DetailId = @DetailId, " +
                                            "Quantity = @Quantity " +
-                                           "WHERE OrderElementId = @OrderElementId ";
+                                           "WHERE OrderElementId = @OrderElementId";
 
         public OrderElementRepository(IConnectionStringProvider connectionStringProvider)
             : base(connectionStringProvider)
@@ -53,7 +53,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
 
         public async Task<OrderElement> GetById(int id)
         {
-            var orderElements = await Connection.QueryAsync<OrderElement, Detail, OrderElement>(QueryGetAll,
+            var orderElements = await Connection.QueryAsync<OrderElement, Detail, OrderElement>(QueryGetById,
                 (orderElement, detail) =>
                 {
                     orderElement.Detail = detail;

@@ -16,9 +16,6 @@
             <th>
                 VehicleId
             </th>
-            <th>
-                Date
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -33,10 +30,8 @@
                     @item.VehicleId
                 </td>
                 <td>
-                    @item.Date
-                </td>
-                <td>
-                    <a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="Index" asp-route-orderId="@item.OrderId">Info</a>
+                    <a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="Index" asp-route-orderId="@item.OrderId">Info</a> | 
+                    <a asp-controller="Order" class="btn btn-outline-secondary" asp-action="ConfirmDelete" asp-route-orderId="@item.OrderId">Delete</a>
                 </td>
             </tr>
         }

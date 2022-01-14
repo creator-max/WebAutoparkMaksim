@@ -23,6 +23,8 @@
             <th>
                 Quantity
             </th>
+            <th>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -44,12 +46,16 @@
             <td>    
                 @item.Quantity
             </td>
+            <td>
+                <a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="Update" asp-route-orderElementId="@item.OrderElementId">Udpate</a> |
+                <a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="ConfirmDelete" asp-route-orderElementId="@item.OrderElementId">Delete</a>
+            </td>
         </tr>
         }
     </tbody>
 </table>
 
 <hr>
-
+<a asp-controller="OrderElement" class="btn btn-outline-secondary" asp-action="Create" asp-route-orderId="@ViewBag.OrderId">Add</a> |
 <a asp-controller="Order" class="btn btn-outline-secondary" asp-action="Index">Back to orders list</a>
 

@@ -12,9 +12,6 @@ namespace WebAutopark.Models
         [Required]
         public int VehicleId { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
-
         public List<OrderElementViewModel> OrderElements { get; set; }
     }
 }

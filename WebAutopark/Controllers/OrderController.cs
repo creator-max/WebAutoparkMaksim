@@ -39,5 +39,27 @@ namespace WebAutopark.Controllers
 
             return RedirectToAction("Create", "OrderElement", new { orderId = order.OrderId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmDelete(int orderId)
+        {
+            var orderDto = await _orderDtoService.GetById(orderId);
+
+            if (orderDto != null)
+            {
+                var orderView = _mapper.Map<OrderViewModel>(orderDto);
+                return View(orderView);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int orderId)
+        {
+            await _orderDtoService.Delete(orderId);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAutopark.DataAccesLayer.Entities;
@@ -12,24 +11,22 @@ namespace WebAutopark.DataAccesLayer.Repositories
         private const string QueryGetAll = "SELECT * FROM Orders ";
 
         private const string QueryGetById = "SELECT * FROM Orders " +
-                                            "WHERE OrderId = @OrderId ";
+                                            "WHERE OrderId = @OrderId";
 
-        private const string QueryCreate = "INSERT INTO Orders(VehicleId, Date) " +
-                                            "VALUES(@VehicleId, @Date) ";
+        private const string QueryCreate = "INSERT INTO Orders(VehicleId) " +
+                                            "VALUES(@VehicleId)";
 
-        private const string QueryCreateAndReturn = "INSERT INTO Orders(VehicleId, Date)" +
-                                                    " OUTPUT Inserted.OrderId, " +
-                                                    "        Inserted.VehicleId," +
-                                                    "        Inserted.Date " +
-                                                    "VALUES(@VehicleId, @Date) ";
+        private const string QueryCreateAndReturn = "INSERT INTO Orders(VehicleId)" +
+                                                    " OUTPUT Inserted.OrderId," +
+                                                    "        Inserted.VehicleId " +
+                                                    "VALUES(@VehicleId)";
 
         private const string QueryDelete = "DELETE FROM Orders " +
-                                           "WHERE OrderId = @OrderId ";
+                                           "WHERE OrderId = @OrderId";
 
         private const string QueryUpdate = "UPDATE Orders SET " +
-                                           "VehicleId = @VehicleId, " +
-                                           "Date      = @Date " +
-                                           "WHERE OrderId = @OrderId ";
+                                           "VehicleId = @VehicleId " +
+                                           "WHERE OrderId = @OrderId";
 
         public OrderRepository(IConnectionStringProvider connectionStringProvider)
             : base(connectionStringProvider)
@@ -41,8 +38,7 @@ namespace WebAutopark.DataAccesLayer.Repositories
         public async Task<Order> CreateAndReturn(int vehicleId)
         {
             var order = new {
-                VehicleId = vehicleId, 
-                Date = DateTime.Now 
+                VehicleId = vehicleId
             };
 
             return await Connection.QueryFirstOrDefaultAsync<Order>(QueryCreateAndReturn, order);

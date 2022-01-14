@@ -8,10 +8,10 @@ namespace WebAutopark.DataAccesLayer.Repositories
 {
     public class VehicleTypeRepository : BaseRepository, IRepository<VehicleType>
     {
-        private const string QueryGetAll = "SELECT * FROM VehicleTypes ";
+        private const string QueryGetAll = "SELECT * FROM VehicleTypes";
 
         private const string QueryGetById = "SELECT * FROM VehicleTypes " +
-                                             "WHERE TypeId = @TypeId ";
+                                             "WHERE TypeId = @TypeId";
 
         private const string QueryCreate = "INSERT INTO VehicleTypes (TypeName, TaxCoefficient) " +
                                             "VALUES(@TypeName, @TaxCoefficient)";
@@ -20,9 +20,9 @@ namespace WebAutopark.DataAccesLayer.Repositories
                                             "WHERE TypeId = @TypeId";
 
         private const string QueryUpdate = "UPDATE VehicleTypes SET " +
-                                            "TypeName       = @TypeName, " +
+                                            "TypeName       = @TypeName," +
                                             "TaxCoefficient = @TaxCoefficient " +
-                                            "WHERE TypeId = @TypeId ";
+                                            "WHERE TypeId = @TypeId";
 
         public VehicleTypeRepository(IConnectionStringProvider connectionStringProvider) :
             base(connectionStringProvider)

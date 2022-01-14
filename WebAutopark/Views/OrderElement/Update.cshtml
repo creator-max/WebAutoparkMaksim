@@ -1,11 +1,12 @@
 ﻿@model WebAutopark.Models.OrderElementViewModel
-
 @{
-    ViewData["Title"] = "NewOrderElement";
+    ViewData["Title"] = "Update OrderElement";
 }
-<h2>@ViewData["Title"]</h2>
 
-<form asp-action="Create" asp-controller="OrderElement">
+<h2>@ViewData["Title"].</h2>
+
+
+<form asp-action="Update" asp-controller="OrderElement">
     <div>
         <div class="validation" asp-validation-summary="ModelOnly"></div>
         <input type="hidden" asp-for="OrderElementId" />
@@ -21,14 +22,8 @@
         </div>
         <div class="form-group">
             <label asp-for="Quantity"></label>
-            <input asp-for="Quantity" class="form-control form-control-sm" value="1"/>
+            <input asp-for="Quantity" class="form-control form-control-sm"/>
             <span asp-validation-for="Quantity" />
-        </div>
-        <div class="form-group">
-            <input class="form-check-input" type="checkbox" name="createAnother" id="flexCheckDefault" value="true"> 
-            <label class="form-check-label" for="flexCheckDefault">
-                Create Another
-            </label>
         </div>
 
         <div class="form-group">
@@ -36,3 +31,7 @@
         </div>
     </div>
 </form>
+
+<div>
+    <a asp-controller="OrderElement" asp-action="Index" asp-route-orderId="@Model.OrderId">Back to the order elements</a>
+</div>
