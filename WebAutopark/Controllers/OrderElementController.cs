@@ -98,10 +98,10 @@ namespace WebAutopark.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(OrderElementViewModel orderElementView)
+        public async Task<IActionResult> Delete(int orderElementId, int orderId)
         {
-            await _orderElementDtoService.Delete(orderElementView.OrderElementId);
-            return RedirectToAction(nameof(Index), new { orderId = orderElementView.OrderId});
+            await _orderElementDtoService.Delete(orderElementId);
+            return RedirectToAction(nameof(Index), new { orderId });
         }
 
         private async Task SetupDetailsToViewBag()
